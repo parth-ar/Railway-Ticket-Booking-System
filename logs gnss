@@ -1,50 +1,320 @@
-(venv) solid-waste@raspberrypi:~/MotionFull/swstp_edge $ sudo lsof /dev/serial0 /dev/ttyAMA0 /dev/ttyS0
-lsof: WARNING: can't stat() fuse.gvfsd-fuse file system /run/user/1000/gvfs
-      Output information may be incomplete.
-lsof: WARNING: can't stat() fuse.portal file system /run/user/1000/doc
-      Output information may be incomplete.
-lsof: status error on /dev/ttyAMA0: No such file or directory
-COMMAND   PID USER FD   TYPE DEVICE SIZE/OFF NODE NAME
-pppd    20635 root 10u   CHR   4,64      0t0  138 /dev/ttyS0
-sh      20636 root  0u   CHR   4,64      0t0  138 /dev/ttyS0
-sh      20636 root  1u   CHR   4,64      0t0  138 /dev/ttyS0
-chat    20637 root  0u   CHR   4,64      0t0  138 /dev/ttyS0
-chat    20637 root  1u   CHR   4,64      0t0  138 /dev/ttyS0
-(venv) solid-waste@raspberrypi:~/MotionFull/swstp_edge $ sudo fuser -v /dev/serial0
-                     USER        PID ACCESS COMMAND
-/dev/ttyS0:          root      20635 F.... pppd
-                     root      20636 F.... sh
-                     root      20637 F.... chat
-(venv) solid-waste@raspberrypi:~/MotionFull/swstp_edge $ ls -l /dev/serial0
-lrwxrwxrwx 1 root root 5 Oct 29 17:49 /dev/serial0 -> ttyS0
-(venv) solid-waste@raspberrypi:~/MotionFull/swstp_edge $ systemctl status gpsd gpsd.socket ModemManager serial-getty@ttyAMA0 serial-getty@ttyS0 --no-pager
-○ gpsd.service - GPS (Global Positioning System) Daemon
-     Loaded: loaded (/usr/lib/systemd/system/gpsd.service; disabled; preset: enabled)
-     Active: inactive (dead)
-TriggeredBy: ● gpsd.socket
-       Docs: man:gpsd
+(venv) solid-waste@raspberrypi:~/MotionFull/swstp_edge $ ps -o pid,ppid,args -p 20635,20636,20637
+ls /etc/ppp/peers/
+grep -rn "serial0\|ttyS0\|/dev/tty" /etc/ppp/peers/
+systemctl list-units --all | grep -iE "ppp|lte|modem"
+    PID    PPID COMMAND
+ls: cannot open directory '/etc/ppp/peers/': Permission denied
+grep: /etc/ppp/peers/: Permission denied
+  ec200u-lte.service                                                                                                                                                                           loaded    active   exited    EC200U LTE USB Ethernet
+  lte-ppp.service                                                                                                                                                                              loaded    active   running   SWSTP EDGE EC200U LTE over UART (PPP)
+(venv) solid-waste@raspberrypi:~/MotionFull/swstp_edge $ sudo poff -a 2>/dev/null; sudo pkill pppd
+(venv) solid-waste@raspberrypi:~/MotionFull/swstp_edge $ python test_m10s.py
+u-blox M10S UART test
+Port: /dev/serial0
+Scanning baud rates...
 
-● gpsd.socket - GPS (Global Positioning System) Daemon Sockets
-     Loaded: loaded (/usr/lib/systemd/system/gpsd.socket; enabled; preset: enabled)
-     Active: active (listening) since Thu 2026-10-29 17:49:12 IST; 2h 44min ago
- Invocation: e02d5edd11d043d0a188d259e4fd1268
-   Triggers: ● gpsd.service
-     Listen: /run/gpsd.sock (Stream)
-             [::1]:2947 (Stream)
-             127.0.0.1:2947 (Stream)
-      Tasks: 0 (limit: 3959)
-        CPU: 2ms
-     CGroup: /system.slice/gpsd.socket
+Testing 9600 baud...
+  NMEA: $GNRMC,150738.00,A,2057.35826,N,07745.82252,E,0.015,,291026,,,D,V*17
+  RMC STATUS: VALID
+  LAT: 20.95597100
+  LON: 77.76370867
+  NMEA: $GNVTG,,T,,M,0.015,N,0.028,K,D*36
+  NMEA: $GNGGA,150738.00,2057.35826,N,07745.82252,E,2,12,0.79,366.5,M,-63.5,M,,*6B
+  FIX QUALITY: 2 | Satellites: 12 | Altitude: 366.5 m
+  LAT: 20.95597100
+  LON: 77.76370867
+  RMC STATUS: VALID
+  LAT: 20.95597067
+  LON: 77.76370767
+  FIX QUALITY: 2 | Satellites: 12 | Altitude: 366.6 m
+  LAT: 20.95597067
+  LON: 77.76370767
+  RMC STATUS: VALID
+  LAT: 20.95597100
+  LON: 77.76370700
+  FIX QUALITY: 2 | Satellites: 12 | Altitude: 366.7 m
+  LAT: 20.95597100
+  LON: 77.76370700
+  RMC STATUS: VALID
+  LAT: 20.95597183
+  LON: 77.76370667
+  FIX QUALITY: 2 | Satellites: 12 | Altitude: 366.8 m
+  LAT: 20.95597183
+  LON: 77.76370667
+  RMC STATUS: VALID
+  LAT: 20.95597200
+  LON: 77.76370600
 
-Notice: journal has been rotated since unit was started, output may be incomplete.
-Unit ModemManager.service could not be found.
+SUCCESS: NMEA data detected at 9600 baud.
+Use this baud rate for your GNSS application.
+(venv) solid-waste@raspberrypi:~/MotionFull/swstp_edge $ python test_m10s.py
+u-blox M10S UART test
+Port: /dev/serial0
+Scanning baud rates...
 
-○ serial-getty@ttyAMA0.service
-     Loaded: masked (Reason: Unit serial-getty@ttyAMA0.service is masked.)
-     Active: inactive (dead)
+Testing 9600 baud...
+  NMEA: $GNRMC,150743.00,A,2057.35836,N,07745.82233,E,0.025,,291026,,,D,V*1E
+  RMC STATUS: VALID
+  LAT: 20.95597267
+  LON: 77.76370550
+  NMEA: $GNVTG,,T,,M,0.025,N,0.047,K,D*3C
+  NMEA: $GNGGA,150743.00,2057.35836,N,07745.82233,E,2,12,0.82,367.1,M,-63.5,M,,*60
+  FIX QUALITY: 2 | Satellites: 12 | Altitude: 367.1 m
+  LAT: 20.95597267
+  LON: 77.76370550
 
-○ serial-getty@ttyS0.service
-     Loaded: masked (Reason: Unit serial-getty@ttyS0.service is masked.)
-     Active: inactive (dead)
+SUCCESS: NMEA data detected at 9600 baud.
+Use this baud rate for your GNSS application.
+(venv) solid-waste@raspberrypi:~/MotionFull/swstp_edge $ python test_m10s.py
+u-blox M10S UART test
+Port: /dev/serial0
+Scanning baud rates...
+
+Testing 9600 baud...
+
+SERIAL ERROR: device reports readiness to read but returned no data (device disconnected or multiple access on port?)
+Check port permissions and whether another process
+is using the UART.
+(venv) solid-waste@raspberrypi:~/MotionFull/swstp_edge $ python test_m10s.py
+u-blox M10S UART test
+Port: /dev/serial0
+Scanning baud rates...
+
+Testing 9600 baud...
+  NMEA: $GNRMC,150752.00,A,2057.35828,N,07745.82206,E,0.024,,291026,,,D,V*16
+  RMC STATUS: VALID
+  LAT: 20.95597133
+  LON: 77.76370100
+  NMEA: $GNVTG,,T,,M,0.024,N,0.045,K,D*3F
+  NMEA: $GNGGA,150752.00,2057.35828,N,07745.82206,E,2,12,0.80,367.8,M,-63.5,M,,*62
+  FIX QUALITY: 2 | Satellites: 12 | Altitude: 367.8 m
+  LAT: 20.95597133
+  LON: 77.76370100
+  RMC STATUS: VALID
+  LAT: 20.95597167
+  LON: 77.76370083
+  FIX QUALITY: 2 | Satellites: 12 | Altitude: 367.9 m
+  LAT: 20.95597167
+  LON: 77.76370083
+  RMC STATUS: VALID
+  LAT: 20.95597217
+  LON: 77.76370050
+  FIX QUALITY: 2 | Satellites: 12 | Altitude: 368.0 m
+  LAT: 20.95597217
+  LON: 77.76370050
+  RMC STATUS: VALID
+  LAT: 20.95597267
+  LON: 77.76370033
+  FIX QUALITY: 2 | Satellites: 12 | Altitude: 368.0 m
+  LAT: 20.95597267
+  LON: 77.76370033
+  RMC STATUS: VALID
+  LAT: 20.95597283
+  LON: 77.76370050
+
+SUCCESS: NMEA data detected at 9600 baud.
+Use this baud rate for your GNSS application.
+(venv) solid-waste@raspberrypi:~/MotionFull/swstp_edge $ python test_m10s.py
+u-blox M10S UART test
+Port: /dev/serial0
+Scanning baud rates...
+
+Testing 9600 baud...
+  NMEA: $GNRMC,150757.00,A,2057.35840,N,07745.82204,E,0.060,,291026,,,D,V*1F
+  RMC STATUS: VALID
+  LAT: 20.95597333
+  LON: 77.76370067
+  NMEA: $GNVTG,,T,,M,0.060,N,0.110,K,D*3E
+  NMEA: $GNGGA,150757.00,2057.35840,N,07745.82204,E,2,12,0.84,367.9,M,-63.5,M,,*6E
+  FIX QUALITY: 2 | Satellites: 12 | Altitude: 367.9 m
+  LAT: 20.95597333
+  LON: 77.76370067
+  RMC STATUS: VALID
+  LAT: 20.95597367
+  LON: 77.76370117
+  FIX QUALITY: 2 | Satellites: 12 | Altitude: 367.7 m
+  LAT: 20.95597367
+  LON: 77.76370117
+  RMC STATUS: VALID
+  LAT: 20.95597450
+  LON: 77.76370150
+  FIX QUALITY: 2 | Satellites: 12 | Altitude: 367.6 m
+  LAT: 20.95597450
+  LON: 77.76370150
+
+SUCCESS: NMEA data detected at 9600 baud.
+Use this baud rate for your GNSS application.
+(venv) solid-waste@raspberrypi:~/MotionFull/swstp_edge $ python test_m10s.py
+u-blox M10S UART test
+Port: /dev/serial0
+Scanning baud rates...
+
+Testing 9600 baud...
+  NMEA: $GQGSV,1,1,02,04,02,114,,08,61,148,,0*66
+
+SERIAL ERROR: device reports readiness to read but returned no data (device disconnected or multiple access on port?)
+Check port permissions and whether another process
+is using the UART.
+(venv) solid-waste@raspberrypi:~/MotionFull/swstp_edge $ python test_m10s.py
+u-blox M10S UART test
+Port: /dev/serial0
+Scanning baud rates...
+
+Testing 9600 baud...
+  NMEA: $GNGSA,A,3,30,27,07,06,10,23,09,,,,,,1.39,0.79,1.15,4*0A
+  NMEA: $GNGSA,A,3,02,07,03,,,,,,,,,,1.39,0.79,1.15,5*03
+  NMEA: $GNGLL,2057.35890,N,07745.82229,E,150805.00,A,D*7E
+  RMC STATUS: VALID
+  LAT: 20.95598283
+  LON: 77.76370500
+  FIX QUALITY: 2 | Satellites: 12 | Altitude: 366.6 m
+  LAT: 20.95598283
+  LON: 77.76370500
+  RMC STATUS: VALID
+  LAT: 20.95598417
+  LON: 77.76370550
+  FIX QUALITY: 2 | Satellites: 12 | Altitude: 366.3 m
+  LAT: 20.95598417
+  LON: 77.76370550
+  RMC STATUS: VALID
+  LAT: 20.95598533
+  LON: 77.76370583
+  FIX QUALITY: 2 | Satellites: 12 | Altitude: 366.0 m
+  LAT: 20.95598533
+  LON: 77.76370583
+
+SUCCESS: NMEA data detected at 9600 baud.
+Use this baud rate for your GNSS application.
+(venv) solid-waste@raspberrypi:~/MotionFull/swstp_edge $ python test_m10s.py
+u-blox M10S UART test
+Port: /dev/serial0
+Scanning baud rates...
+
+Testing 9600 baud...
+  NMEA: $GNRMC,150811.00,A,2057.35924,N,07745.82249,E,0.012,,291026,,,D,V*1D
+  RMC STATUS: VALID
+  LAT: 20.95598733
+  LON: 77.76370817
+  NMEA: $GNVTG,,T,,M,0.012,N,0.022,K,D*3B
+  NMEA: $GNGGA,150811.00,2057.35924,N,07745.82249,E,2,12,0.79,364.9,M,-63.5,M,,*68
+  FIX QUALITY: 2 | Satellites: 12 | Altitude: 364.9 m
+  LAT: 20.95598733
+  LON: 77.76370817
+  RMC STATUS: VALID
+  LAT: 20.95598833
+  LON: 77.76370867
+  FIX QUALITY: 2 | Satellites: 12 | Altitude: 364.7 m
+  LAT: 20.95598833
+  LON: 77.76370867
+  RMC STATUS: VALID
+  LAT: 20.95598900
+  LON: 77.76370933
+  FIX QUALITY: 2 | Satellites: 12 | Altitude: 364.4 m
+  LAT: 20.95598900
+  LON: 77.76370933
+  RMC STATUS: VALID
+  LAT: 20.95598950
+  LON: 77.76370950
+
+SUCCESS: NMEA data detected at 9600 baud.
+Use this baud rate for your GNSS application.
+(venv) solid-waste@raspberrypi:~/MotionFull/swstp_edge $ python test_m10s.py
+u-blox M10S UART test
+Port: /dev/serial0
+Scanning baud rates...
+
+Testing 9600 baud...
+
+SERIAL ERROR: device reports readiness to read but returned no data (device disconnected or multiple access on port?)
+Check port permissions and whether another process
+is using the UART.
+(venv) solid-waste@raspberrypi:~/MotionFull/swstp_edge $ sudo poff -a 2>/dev/null; sudo pkill pppd
+/usr/bin/poff: No pppd is running.  None stopped.
+(venv) solid-waste@raspberrypi:~/MotionFull/swstp_edge $ python test_m10s.py
+u-blox M10S UART test
+Port: /dev/serial0
+Scanning baud rates...
+
+Testing 9600 baud...
+
+SERIAL ERROR: device reports readiness to read but returned no data (device disconnected or multiple access on port?)
+Check port permissions and whether another process
+is using the UART.
+(venv) solid-waste@raspberrypi:~/MotionFull/swstp_edge $ python test_m10s.py
+u-blox M10S UART test
+Port: /dev/serial0
+Scanning baud rates...
+
+Testing 9600 baud...
+  NMEA: $GNGGA,150838.00,2057.35917,N,07745.82240,E,2,12,0.84,363.5,M,-63.5,M,,*63
+  FIX QUALITY: 2 | Satellites: 12 | Altitude: 363.5 m
+  LAT: 20.95598617
+  LON: 77.76370667
+  NMEA: $GNGSA,A,3,11,30,14,21,22,,,,,,,,1.45,0.84,1.19,1*01
+  NMEA: $GNGSA,A,3,21,06,28,04,09,,,,,,,,1.45,0.84,1.19,3*04
+  RMC STATUS: VALID
+  LAT: 20.95598583
+  LON: 77.76370683
+  FIX QUALITY: 2 | Satellites: 12 | Altitude: 363.4 m
+  LAT: 20.95598583
+  LON: 77.76370683
+  RMC STATUS: VALID
+  LAT: 20.95598533
+  LON: 77.76370683
+  FIX QUALITY: 2 | Satellites: 12 | Altitude: 363.3 m
+  LAT: 20.95598533
+  LON: 77.76370683
+  RMC STATUS: VALID
+  LAT: 20.95598450
+  LON: 77.76370683
+  FIX QUALITY: 2 | Satellites: 12 | Altitude: 363.2 m
+  LAT: 20.95598450
+  LON: 77.76370683
+  RMC STATUS: VALID
+  LAT: 20.95598400
+  LON: 77.76370683
+
+SUCCESS: NMEA data detected at 9600 baud.
+Use this baud rate for your GNSS application.
+(venv) solid-waste@raspberrypi:~/MotionFull/swstp_edge $ python test_m10s.py
+u-blox M10S UART test
+Port: /dev/serial0
+Scanning baud rates...
+
+Testing 9600 baud...
+  NMEA: $GPGSV,4,4,13,41,65,165,27,1*57
+  NMEA: $GPGSV,1,1,03,03,01,043,,12,15,319,,49,07,264,,0*55
+  NMEA: $GAGSV,2,1,06,04,14,232,29,06,12,256,32,09,06,279,31,21,24,102,27,7*78
+  RMC STATUS: VALID
+  LAT: 20.95598450
+  LON: 77.76370667
+  FIX QUALITY: 2 | Satellites: 12 | Altitude: 362.8 m
+  LAT: 20.95598450
+  LON: 77.76370667
+  RMC STATUS: VALID
+  LAT: 20.95598450
+  LON: 77.76370667
+  FIX QUALITY: 2 | Satellites: 12 | Altitude: 362.7 m
+  LAT: 20.95598450
+  LON: 77.76370667
+  RMC STATUS: VALID
+  LAT: 20.95598533
+  LON: 77.76370667
+  FIX QUALITY: 2 | Satellites: 12 | Altitude: 362.5 m
+  LAT: 20.95598533
+  LON: 77.76370667
+^[[A^[[A
+SUCCESS: NMEA data detected at 9600 baud.
+Use this baud rate for your GNSS application.
+(venv) solid-waste@raspberrypi:~/MotionFull/swstp_edge $ python test_m10s.py
+u-blox M10S UART test
+Port: /dev/serial0
+Scanning baud rates...
+
+Testing 9600 baud...
+
+SERIAL ERROR: device reports readiness to read but returned no data (device disconnected or multiple access on port?)
+Check port permissions and whether another process
+is using the UART.
 (venv) solid-waste@raspberrypi:~/MotionFull/swstp_edge $ 
 
