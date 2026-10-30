@@ -1,20 +1,137 @@
-(venv) solid-waste@raspberrypi:~/MotionFull/swstp_edge $ sudo systemctl stop lte-ppe.service
-Failed to stop lte-ppe.service: Unit lte-ppe.service not loaded.
-(venv) solid-waste@raspberrypi:~/MotionFull/swstp_edge $ sudo systemctl stop lte-ppp.service
-(venv) solid-waste@raspberrypi:~/MotionFull/swstp_edge $ sudo systemctl disable  lte-ppp.service
-Removed '/etc/systemd/system/multi-user.target.wants/lte-ppp.service'.
-(venv) solid-waste@raspberrypi:~/MotionFull/swstp_edge $ sudo lsof -/dev/ttyS0
-lsof: illegal option character: /
-lsof: invalid fd type given in -d option
-(venv) solid-waste@raspberrypi:~/MotionFull/swstp_edge $ sudo lsof /dev/ttyS0
-lsof: WARNING: can't stat() fuse.gvfsd-fuse file system /run/user/1000/gvfs
-      Output information may be incomplete.
-lsof: WARNING: can't stat() fuse.portal file system /run/user/1000/doc
-      Output information may be incomplete.
-(venv) solid-waste@raspberrypi:~/MotionFull/swstp_edge $ sudo lsof /dev/ttyS0
-lsof: WARNING: can't stat() fuse.gvfsd-fuse file system /run/user/1000/gvfs
-      Output information may be incomplete.
-lsof: WARNING: can't stat() fuse.portal file system /run/user/1000/doc
-      Output information may be incomplete.
-(venv) solid-waste@raspberrypi:~/MotionFull/swstp_edge $ 
+solid-waste@raspberrypi:~ $ sudo journalctl -u swstp-edge -f
+Oct 30 17:07:43 raspberrypi swstp-edge[3396]:             Access URL:      /api/evidence/images/101792
+Oct 30 17:07:43 raspberrypi swstp-edge[3396]:             Session ID:      #96
+Oct 30 17:07:43 raspberrypi swstp-edge[3396]: =================================================================
+Oct 30 17:07:43 raspberrypi swstp-edge[3396]: [LOCAL STORAGE CLEANUP] ✔ Upload confirmed -> Deleted local backup: motion_RTC_2026_10_30T17_07_26_0004.jpg, motion_RTC_2026_10_30T17_07_26_0004.json
+Oct 30 17:07:43 raspberrypi swstp-edge[3396]: [BACKLOG SYNC] ✔ Synchronized and deleted 2 offline capture(s) from local storage.
+Oct 30 17:07:47 raspberrypi swstp-edge[3396]: =================================================================
+Oct 30 17:07:47 raspberrypi swstp-edge[3396]:  [HARDWARE] GPS MODULE (MAX-M10S) -> FIX LOST
+Oct 30 17:07:47 raspberrypi swstp-edge[3396]:             Satellite fix lost — coordinates cleared.
+Oct 30 17:07:47 raspberrypi swstp-edge[3396]: =================================================================
+Oct 30 17:07:47 raspberrypi swstp-edge[3396]: [LITTER TRIGGER] ⚠️  GNSS hardware fix lost. Grace period: 5s before clock fallback ...
+Oct 30 17:07:52 raspberrypi swstp-edge[3396]: =================================================================
+Oct 30 17:07:52 raspberrypi swstp-edge[3396]:  [HARDWARE] GPS MODULE (MAX-M10S) -> SATELLITE FIX & ROAD SNAP
+Oct 30 17:07:52 raspberrypi swstp-edge[3396]:             Raw GPS: (20.956005, 77.763741) -> Road: (20.956138, 77.763815) [Drift: 16.7m | SafeZone: False | Snapped: True]
+Oct 30 17:07:52 raspberrypi swstp-edge[3396]: =================================================================
+Oct 30 17:07:52 raspberrypi swstp-edge[3396]: [LITTER TRIGGER] ✅ GNSS fix recovered within grace period (5.1s). Continuing distance mode.
+Oct 30 17:07:55 raspberrypi swstp-edge[3396]: [STOP #1 | CAPTURE #5] Logged motion frame 'motion_RTC_2026_10_30T17_07_55_0005.jpg' @ +147.8s into stop (Total captures in this stop: 5)
+Oct 30 17:07:55 raspberrypi swstp-edge[3396]: [MOTION #5] /home/solid-waste/MotionFull/swstp_edge/captures/motion/motion_RTC_2026_10_30T17_07_55_0005.jpg | Side: RIGHT | Stop #1 147.8s | Speed: 0.1 km/h
+Oct 30 17:07:57 raspberrypi swstp-edge[3396]: [FIELD LOG] 🏠 HOUSE MARKED AS COLLECTED (EVIDENCE CONFIRMED by backend)
+Oct 30 17:07:57 raspberrypi swstp-edge[3396]:             House: AMR-A3-659 - Property 659 (Ward A3) (@ 10.0m)
+Oct 30 17:07:57 raspberrypi swstp-edge[3396]:             Total collected: 1 / 5882
+Oct 30 17:07:57 raspberrypi swstp-edge[3396]: =================================================================
+Oct 30 17:07:57 raspberrypi swstp-edge[3396]: [FIELD LOG] 📸 EVIDENCE UPLOADED & CONFIRMED BY BACKEND
+Oct 30 17:07:57 raspberrypi swstp-edge[3396]:             EvidenceImageId: #101793
+Oct 30 17:07:57 raspberrypi swstp-edge[3396]:             Server Path:     sessionimages/ULB_MH_AMRAVATI/2026/10/342/101793.jpg
+Oct 30 17:07:57 raspberrypi swstp-edge[3396]:             Real Raw GPS:    (20.95600333, 77.76374217)
+Oct 30 17:07:57 raspberrypi swstp-edge[3396]:             Road Snapped GPS:(20.95613742, 77.76381741) [Correction: 16.8m]
+Oct 30 17:07:57 raspberrypi swstp-edge[3396]:             Associated House:AMR-A3-659 - Property 659 (Ward A3) (@ 10.0m)
+Oct 30 17:07:57 raspberrypi swstp-edge[3396]:             Dumping Side:    RIGHT
+Oct 30 17:07:57 raspberrypi swstp-edge[3396]:             Access URL:      /api/evidence/images/101793
+Oct 30 17:07:57 raspberrypi swstp-edge[3396]:             Session ID:      #96
+Oct 30 17:07:57 raspberrypi swstp-edge[3396]: =================================================================
+Oct 30 17:07:57 raspberrypi swstp-edge[3396]: [LOCAL STORAGE CLEANUP] ✔ Upload confirmed -> Deleted local backup: motion_RTC_2026_10_30T17_07_55_0005.jpg, motion_RTC_2026_10_30T17_07_55_0005.json
+Oct 30 17:08:10 raspberrypi swstp-edge[3396]: [FIELD LOG] 🚚 LEAVING STOP / MOVING: Resumed motion at 541.2 km/h (Heading: 298°)
+Oct 30 17:08:10 raspberrypi swstp-edge[3396]: [FIELD PROXIMITY] Nearest House: AMR-A3-659 (Property 659 (Ward A3)) @ 8.9m | Speed: 541.2 km/h
+Oct 30 17:08:11 raspberrypi swstp-edge[3396]: ======================================================================
+Oct 30 17:08:11 raspberrypi swstp-edge[3396]: [STOP EVENT CONCLUDED] Vehicle Resumed Motion -- Stop #1 Summary Report
+Oct 30 17:08:11 raspberrypi swstp-edge[3396]: ----------------------------------------------------------------------
+Oct 30 17:08:11 raspberrypi swstp-edge[3396]:   Stop Index:             Stop #1
+Oct 30 17:08:11 raspberrypi swstp-edge[3396]:   Start Time (RTC):       2026-10-30T17:05:27
+Oct 30 17:08:11 raspberrypi swstp-edge[3396]:   End Time (RTC):         2026-10-30T17:08:11
+Oct 30 17:08:11 raspberrypi swstp-edge[3396]:   Total Stopped Duration: 02m 43s (163.2s)
+Oct 30 17:08:11 raspberrypi swstp-edge[3396]:   Start Coordinates:      (20.95614200, 77.76380807)
+Oct 30 17:08:11 raspberrypi swstp-edge[3396]:   End Coordinates:        (20.95614411, 77.76380376)
+Oct 30 17:08:11 raspberrypi swstp-edge[3396]:   Stationary GNSS Drift:  Max displacement 5.52 m from stop origin
+Oct 30 17:08:11 raspberrypi swstp-edge[3396]:   Conclusion Trigger:     Vehicle back in motion: Speed rose above 5.0 km/h (current: 541.2 km/h) | GNSS motion, IMU quiet → extended confirm | 5 frame(s) captured
+Oct 30 17:08:11 raspberrypi swstp-edge[3396]:   Motion Frames Captured: 5 frame(s)
+Oct 30 17:08:11 raspberrypi swstp-edge[3396]:   --------------------------------------------------------------------
+Oct 30 17:08:11 raspberrypi swstp-edge[3396]:   Previous Motion Frames Captured During This Stop:
+Oct 30 17:08:11 raspberrypi swstp-edge[3396]:     [01] motion_RTC_2026_10_30T17_07_03_0001.jpg | Side: RIGHT | Offset: +96.1s | RTC: 2026-10-30T17:07:03 | Coords: (20.956133, 77.763826)
+Oct 30 17:08:11 raspberrypi swstp-edge[3396]:     [02] motion_RTC_2026_10_30T17_07_10_0002.jpg | Side: RIGHT | Offset: +102.5s | RTC: 2026-10-30T17:07:10 | Coords: (20.956138, 77.763816)
+Oct 30 17:08:11 raspberrypi swstp-edge[3396]:     [03] motion_RTC_2026_10_30T17_07_20_0003.jpg | Side: RIGHT | Offset: +112.7s | RTC: 2026-10-30T17:07:20 | Coords: (N/A)
+Oct 30 17:08:11 raspberrypi swstp-edge[3396]:     [04] motion_RTC_2026_10_30T17_07_26_0004.jpg | Side: RIGHT | Offset: +118.7s | RTC: 2026-10-30T17:07:26 | Coords: (N/A)
+Oct 30 17:08:11 raspberrypi swstp-edge[3396]:     [05] motion_RTC_2026_10_30T17_07_55_0005.jpg | Side: RIGHT | Offset: +147.8s | RTC: 2026-10-30T17:07:55 | Coords: (20.956137, 77.763817)
+Oct 30 17:08:11 raspberrypi swstp-edge[3396]: ======================================================================
+Oct 30 17:08:14 raspberrypi swstp-edge[3396]: =================================================================
+Oct 30 17:08:14 raspberrypi swstp-edge[3396]:  [HARDWARE] GPS MODULE (MAX-M10S) -> FIX LOST
+Oct 30 17:08:14 raspberrypi swstp-edge[3396]:             Satellite fix lost — coordinates cleared.
+Oct 30 17:08:14 raspberrypi swstp-edge[3396]: =================================================================
+Oct 30 17:08:14 raspberrypi swstp-edge[3396]: [LITTER TRIGGER] ⚠️  GNSS hardware fix lost. Grace period: 5s before clock fallback ...
+Oct 30 17:08:14 raspberrypi swstp-edge[3396]: ======================================================================
+Oct 30 17:08:14 raspberrypi swstp-edge[3396]: [VEHICLE STOP DETECTED] Stop #2 Started
+Oct 30 17:08:14 raspberrypi swstp-edge[3396]: ----------------------------------------------------------------------
+Oct 30 17:08:14 raspberrypi swstp-edge[3396]:   Start Time (RTC): 2026-10-30T17:08:14 (confirmed at 2026-10-30T17:08:14)
+Oct 30 17:08:14 raspberrypi swstp-edge[3396]:   GNSS Speed:       0.0 km/h (< 5.0 km/h)
+Oct 30 17:08:14 raspberrypi swstp-edge[3396]:   IMU Dynamics:     dyn_accel: 0.044 m/s² | gyro_mag: 0.14 °/s | at rest
+Oct 30 17:08:14 raspberrypi swstp-edge[3396]:   Sensor Fusion:    GNSS+IMU agree → fast confirm (debounce: 0.6s, confirmed in 0.6s)
+Oct 30 17:08:14 raspberrypi swstp-edge[3396]:   Status:           Stop timer started (00m 00s (0.6s) elapsed since rest began). House status unchanged until camera frame confirmed.
+Oct 30 17:08:14 raspberrypi swstp-edge[3396]: ======================================================================
+Oct 30 17:08:16 raspberrypi swstp-edge[3396]: =================================================================
+Oct 30 17:08:16 raspberrypi swstp-edge[3396]:  [HARDWARE] GPS MODULE (MAX-M10S) -> SATELLITE FIX & ROAD SNAP
+Oct 30 17:08:16 raspberrypi swstp-edge[3396]:             Raw GPS: (20.956023, 77.763704) -> Road: (20.956156, 77.763779) [Drift: 16.8m | SafeZone: False | Snapped: True]
+Oct 30 17:08:16 raspberrypi swstp-edge[3396]: =================================================================
+Oct 30 17:08:16 raspberrypi swstp-edge[3396]: =================================================================
+Oct 30 17:08:16 raspberrypi swstp-edge[3396]: [FIELD LOG] 🛑 VEHICLE STOP NEAR HOUSE: AMR-A3-659 - Property 659 (Ward A3)
+Oct 30 17:08:16 raspberrypi swstp-edge[3396]:             Proximity Dist: 7.6m (Threshold <= 15m) | Speed: 0.4 km/h
+Oct 30 17:08:16 raspberrypi swstp-edge[3396]:             📷 Awaiting camera frame — house status unchanged until evidence confirmed.
+Oct 30 17:08:16 raspberrypi swstp-edge[3396]:             Active Session: #96
+Oct 30 17:08:16 raspberrypi swstp-edge[3396]: =================================================================
+Oct 30 17:08:16 raspberrypi swstp-edge[3396]: [LITTER TRIGGER] ✅ GNSS fix recovered within grace period (2.0s). Continuing distance mode.
+Oct 30 17:08:26 raspberrypi swstp-edge[3396]: =================================================================
+Oct 30 17:08:26 raspberrypi swstp-edge[3396]:  [HARDWARE] GPS MODULE (MAX-M10S) -> FIX LOST
+Oct 30 17:08:26 raspberrypi swstp-edge[3396]:             Satellite fix lost — coordinates cleared.
+Oct 30 17:08:26 raspberrypi swstp-edge[3396]: =================================================================
+Oct 30 17:08:26 raspberrypi swstp-edge[3396]: [LITTER TRIGGER] ⚠️  GNSS hardware fix lost. Grace period: 5s before clock fallback ...
+Oct 30 17:08:28 raspberrypi swstp-edge[3396]: =================================================================
+Oct 30 17:08:28 raspberrypi swstp-edge[3396]:  [HARDWARE] GPS MODULE (MAX-M10S) -> SATELLITE FIX & ROAD SNAP
+Oct 30 17:08:28 raspberrypi swstp-edge[3396]:             Raw GPS: (20.956016, 77.763719) -> Road: (20.956149, 77.763794) [Drift: 16.8m | SafeZone: False | Snapped: True]
+Oct 30 17:08:28 raspberrypi swstp-edge[3396]: =================================================================
+Oct 30 17:08:28 raspberrypi swstp-edge[3396]: [LITTER TRIGGER] ✅ GNSS fix recovered within grace period (2.5s). Continuing distance mode.
+Oct 30 17:08:40 raspberrypi swstp-edge[3396]: [FIELD PROXIMITY] Nearest House: AMR-A3-659 (Property 659 (Ward A3)) @ 8.5m | Speed: 0.3 km/h
+Oct 30 17:08:45 raspberrypi swstp-edge[3396]: =================================================================
+Oct 30 17:08:45 raspberrypi swstp-edge[3396]:  [HARDWARE] GPS MODULE (MAX-M10S) -> FIX LOST
+Oct 30 17:08:45 raspberrypi swstp-edge[3396]:             Satellite fix lost — coordinates cleared.
+Oct 30 17:08:45 raspberrypi swstp-edge[3396]: =================================================================
+Oct 30 17:08:45 raspberrypi swstp-edge[3396]: [LITTER TRIGGER] ⚠️  GNSS hardware fix lost. Grace period: 5s before clock fallback ...
+Oct 30 17:08:49 raspberrypi swstp-edge[3396]: =================================================================
+Oct 30 17:08:49 raspberrypi swstp-edge[3396]:  [HARDWARE] GPS MODULE (MAX-M10S) -> SATELLITE FIX & ROAD SNAP
+Oct 30 17:08:49 raspberrypi swstp-edge[3396]:             Raw GPS: (20.956007, 77.763730) -> Road: (20.956143, 77.763807) [Drift: 17.0m | SafeZone: False | Snapped: True]
+Oct 30 17:08:49 raspberrypi swstp-edge[3396]: =================================================================
+Oct 30 17:08:49 raspberrypi swstp-edge[3396]: [LITTER TRIGGER] ✅ GNSS fix recovered within grace period (4.1s). Continuing distance mode.
+Oct 30 17:09:07 raspberrypi swstp-edge[3396]: =================================================================
+Oct 30 17:09:07 raspberrypi swstp-edge[3396]:  [HARDWARE] GPS MODULE (MAX-M10S) -> FIX LOST
+Oct 30 17:09:07 raspberrypi swstp-edge[3396]:             Satellite fix lost — coordinates cleared.
+Oct 30 17:09:07 raspberrypi swstp-edge[3396]: =================================================================
+Oct 30 17:09:07 raspberrypi swstp-edge[3396]: [LITTER TRIGGER] ⚠️  GNSS hardware fix lost. Grace period: 5s before clock fallback ...
+Oct 30 17:09:12 raspberrypi swstp-edge[3396]: [LITTER TRIGGER] ⏱  GNSS lost >5s. Switching to clock fallback (every 30s). First trigger in ~5s.
+Oct 30 17:09:17 raspberrypi swstp-edge[3396]: [LITTER TRIGGER] ⏱  TIME FALLBACK — queuing inference #3 (no GNSS, clock-based every 30s)
+Oct 30 17:09:17 raspberrypi swstp-edge[3396]: [LITTER] Trigger #3 queued (TIME_FALLBACK, dist: 1.1m)
+Oct 30 17:09:18 raspberrypi swstp-edge[3396]: [LITTER TRIGGER] ⏱  TIME FALLBACK active — next trigger in 29s
+Oct 30 17:09:18 raspberrypi swstp-edge[3396]: [LITTER TRIGGER] ⏱  TIME FALLBACK active — next trigger in 29s
+Oct 30 17:09:18 raspberrypi swstp-edge[3396]: [LITTER TRIGGER] ⏱  TIME FALLBACK active — next trigger in 29s
+Oct 30 17:09:18 raspberrypi swstp-edge[3396]: [LITTER TRIGGER] ⏱  TIME FALLBACK active — next trigger in 29s
+Oct 30 17:09:18 raspberrypi swstp-edge[3396]: [LITTER TRIGGER] ⏱  TIME FALLBACK active — next trigger in 29s
+Oct 30 17:09:18 raspberrypi swstp-edge[3396]: [LITTER TRIGGER] ⏱  TIME FALLBACK active — next trigger in 29s
+Oct 30 17:09:18 raspberrypi swstp-edge[3396]: [LITTER TRIGGER] ⏱  TIME FALLBACK active — next trigger in 29s
+Oct 30 17:09:18 raspberrypi swstp-edge[3396]: [LITTER] Trigger #3: 0 litter detected (0 total, 1096ms inference)
+Oct 30 17:09:18 raspberrypi swstp-edge[3396]: [LITTER] Trigger #3: clean frame (0 litter). No save.
+Oct 30 17:09:20 raspberrypi swstp-edge[3396]: =================================================================
+Oct 30 17:09:20 raspberrypi swstp-edge[3396]:  [HARDWARE] GPS MODULE (MAX-M10S) -> SATELLITE FIX & ROAD SNAP
+Oct 30 17:09:20 raspberrypi swstp-edge[3396]:             Raw GPS: (20.955991, 77.763738) -> Road: (20.956137, 77.763819) [Drift: 18.3m | SafeZone: False | Snapped: True]
+Oct 30 17:09:20 raspberrypi swstp-edge[3396]: =================================================================
+Oct 30 17:09:20 raspberrypi swstp-edge[3396]: [FIELD PROXIMITY] Nearest House: AMR-A3-659 (Property 659 (Ward A3)) @ 10.1m | Speed: 0.2 km/h
+Oct 30 17:09:20 raspberrypi swstp-edge[3396]: [LITTER TRIGGER] ✅ GNSS fix REGAINED @ (20.95613656, 77.76381918). Re-anchoring — resuming 5.0m distance mode.
+Oct 30 17:09:50 raspberrypi swstp-edge[3396]: [FIELD PROXIMITY] Nearest House: AMR-A3-659 (Property 659 (Ward A3)) @ 9.3m | Speed: 0.1 km/h
+Oct 30 17:10:03 raspberrypi swstp-edge[3396]: =================================================================
+Oct 30 17:10:03 raspberrypi swstp-edge[3396]:  [HARDWARE] GPS MODULE (MAX-M10S) -> FIX LOST
+Oct 30 17:10:03 raspberrypi swstp-edge[3396]:             Satellite fix lost — coordinates cleared.
+Oct 30 17:10:03 raspberrypi swstp-edge[3396]: =================================================================
+Oct 30 17:10:03 raspberrypi swstp-edge[3396]: [LITTER TRIGGER] ⚠️  GNSS hardware fix lost. Grace period: 5s before clock fallback ...
+Oct 30 17:10:05 raspberrypi swstp-edge[3396]: =================================================================
+Oct 30 17:10:05 raspberrypi swstp-edge[3396]:  [HARDWARE] GPS MODULE (MAX-M10S) -> SATELLITE FIX & ROAD SNAP
+Oct 30 17:10:05 raspberrypi swstp-edge[3396]:             Raw GPS: (20.956023, 77.763721) -> Road: (20.956150, 77.763792) [Drift: 15.9m | SafeZone: False | Snapped: True]
+Oct 30 17:10:05 raspberrypi swstp-edge[3396]: =================================================================
+Oct 30 17:10:05 raspberrypi swstp-edge[3396]: [LITTER TRIGGER] ✅ GNSS fix recovered within grace period (2.1s). Continuing distance mode.
+
 
