@@ -1,3 +1,7 @@
+solid-waste@raspberrypi:~ $ systemctl list-units --type=service | grep -i swstp
+  swstp-power-switch.service                                  loaded active running SWSTP Safe Power Switch
+solid-waste@raspberrypi:~ $ systemctl cat swstp-power-switch.service 
+# /etc/systemd/system/swstp-power-switch.service
 [Unit]
 Description=SWSTP Safe Power Switch
 After=local-fs.target
