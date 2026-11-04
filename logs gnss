@@ -1,18 +1,25 @@
-solid-waste@raspberrypi:~ $ systemctl list-units --type=service | grep -i swstp
-  swstp-power-switch.service                                  loaded active running SWSTP Safe Power Switch
-solid-waste@raspberrypi:~ $ systemctl cat swstp-power-switch.service 
-# /etc/systemd/system/swstp-power-switch.service
-[Unit]
-Description=SWSTP Safe Power Switch
-After=local-fs.target
-Before=swstp-edge.service
-Before=multi-user.target
+solid-waste@raspberrypi:~ $ systemctl status swstp-edge.service
+○ swstp-edge.service - SWSTP Edge Gateway — Motion & Litter Detection (Raspberr>
+     Loaded: loaded (/etc/systemd/system/swstp-edge.service; enabled; preset: e>
+     Active: inactive (dead) since Wed 2026-11-04 15:15:11 IST; 2h 5min ago
+   Duration: 1h 35min 32.923s
+ Invocation: 4694a3829c4945bab8c07cd17c560232
+    Process: 1237 ExecStart=/home/solid-waste/MotionFull/swstp_edge/venv/bin/py>
+   Main PID: 1237 (code=killed, signal=TERM)
+        CPU: 2min 5.057s
 
-[Service]
-Type=simple
-ExecStart=/usr/bin/python3 /usr/local/sbin/swstp-power-switch.py
-Restart=on-failure
-RestartSec=2
+Nov 04 15:14:52 raspberrypi swstp-edge[1237]: [RAW GNSS STREAM] Destination htt>
+Nov 04 15:14:54 raspberrypi swstp-edge[1237]: [BACKLOG SYNC] Uploading offline >
+Nov 04 15:14:55 raspberrypi swstp-edge[1237]: [BACKLOG SYNC ERROR] must be real>
+Nov 04 15:15:04 raspberrypi swstp-edge[1237]: [BACKLOG SYNC] Uploading offline >
+Nov 04 15:15:05 raspberrypi swstp-edge[1237]: [BACKLOG SYNC ERROR] must be real>
+Nov 04 15:15:07 raspberrypi swstp-edge[1237]: [RAW GNSS STREAM] Destination htt>
+Nov 04 15:15:11 raspberrypi systemd[1]: Stopping swstp-edge.service - SWSTP Edg>
+Nov 04 15:15:11 raspberrypi systemd[1]: swstp-edge.service: Deactivated success>
+Nov 04 15:15:11 raspberrypi systemd[1]: Stopped swstp-edge.service - SWSTP Edge>
+Nov 04 15:15:11 raspberrypi systemd[1]: swstp-edge.service: Consumed 2min 5.057>
 
-[Install]
-WantedBy=multi-user.target
+solid-waste@raspberrypi:~ $ ls /etc/systemd/system | grep -i swstp
+swstp-edge.service
+swstp-power-switch.service
+solid-waste@raspberrypi:~ $ 
