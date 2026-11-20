@@ -1,10 +1,535 @@
-cd swstp_edge && python3 -c "
-import serial, time
-s = serial.Serial('/dev/serial0', 115200, timeout=0.2)
-s.write(bytes([0xB5,0x62,0x06,0x08,0x06,0x00,0xC8,0x00,0x01,0x00,0x01,0x00,0xDE,0x6A]))
-time.sleep(0.5); s.reset_input_buffer()
-t = time.time(); n = 0
-while time.time() - t < 5:
-    if b'GGA' in s.readline(): n += 1
-print(f'GGA per second: {n/5:.1f}  (5.0 = 5 Hz working, 1.0 = ignored)')
-"
+solid-waste@raspberrypi:~ $ cd MotionFull/swstp_edge/
+solid-waste@raspberrypi:~/MotionFull/swstp_edge $ source venv/bin/activate
+(venv) solid-waste@raspberrypi:~/MotionFull/swstp_edge $ python main.py 
+
+=== SWSTP UNIFIED SENSOR INIT ===
+[RTC] Scanning Linux kernel RTC subsystem (/sys/class/rtc)...
+[RTC] No kernel-managed RTC found matching '1-0068' in /sys/class/rtc — falling back to direct SMBus probe.
+[RTC] ✔ DS3231 detected via direct SMBus access.
+[RTC]   I²C bus      : 1
+[RTC]   I²C address  : 0x68
+[RTC]   Access mode  : Direct SMBus (fast hardware-first init)
+[RTC]   Hardware time: 2026-11-20 12:21:16 IST
+[RTC]   Clock source : DS3231 (Timezone: Asia/Kolkata)
+[IMU] Loaded saved calibration (provisional, saved 2026-11-20T12:05:45)
+[IMU] Detected sensor at 0x69 (WHO_AM_I=0x70) — configured ±2g, ±250°/s, DLPF 42Hz
+[IMU] Calibration (boot) ACCEPTED (replaced, provisional) | spread gyro=0.063 °/s accel=0.0038 g, temp=26.6 °C | gyro bias=(-0.163, +2.733, +0.128) °/s
+[IMU] READY — MPU sensor at 0x69 on SMBus(1) (boot calibration).
+[GNSS] Initializing receiver...
+[GNSS] Checking communication at 115200 baud...
+[GNSS] No response at 115200 baud.
+[GNSS] Checking communication at 9600 baud...
+[GNSS] Receiver detected at 9600 baud.
+[GNSS] Configuring UART1 to 115200 baud...
+[GNSS] Verifying new baud rate...
+[GNSS] Receiver failed verification at 115200 baud on /dev/serial0.
+[LEDS] GPIO LED driver initialised.
+
+========================================================
+ SWSTP UNIFIED EDGE GATEWAY INITIALIZING (Raspberry Pi 4B)
+ Backend:          https://solidwasteapi.scipl.info.in
+ Device ID:        SWSTP-AMRMC-001
+ Vehicle ID:       SWSTP-AMRMC-001
+ Raw GNSS Stream:  POST https://solidwasteapinew.scipl.info.in/api/SWSTP-AMRMC-001/live_location @ 5.0Hz
+ ULB ID:           ULB_MH_AMRAVATI
+ Session ID:       DYNAMIC HARDWARE BIND
+ Timezone:         Asia/Kolkata (IST, UTC+05:30)
+ Motion Captures:  /home/solid-waste/MotionFull/swstp_edge/captures/motion
+ Litter Captures:  /home/solid-waste/MotionFull/swstp_edge/captures/litter
+ Litter Weights:   /home/solid-waste/MotionFull/swstp_edge/weights/best.onnx
+ Litter Trigger:   every 5.0m (GNSS only)
+ Litter Detection: ENABLED
+ RTC:              OK (DS3231) [DS3231]
+ IMU:              OK (MPU-6500 @ 0x69)
+ GNSS:             u-blox MAX-M10S reader started (/dev/serial0 @ 115200 baud)
+========================================================
+
+[SESSION LOG] Logging to: /home/solid-waste/MotionFull/swstp_edge/logs/sessions/2026-11-20_12-21-21_SWSTP-AMRMC-001.json
+[0:40:43.247192569] [5998]  INFO Camera camera_manager.cpp:340 libcamera v0.7.2+rpt20260817
+[0:40:43.294327075] [6029]  WARN CameraSensorProperties camera_sensor_properties.cpp:612 No static properties available for 'imx708_wide_noir'
+[0:40:43.294378685] [6029]  WARN CameraSensorProperties camera_sensor_properties.cpp:614 Please consider updating the camera sensor properties database
+[0:40:43.378968698] [6029]  INFO RPI pipeline_base.cpp:1133 Using configuration file '/usr/share/libcamera/pipeline/rpi/vc4/rpi_apps.yaml'
+[0:40:43.403526200] [6029]  INFO IPAProxy ipa_proxy.cpp:184 Using tuning file /usr/share/libcamera/ipa/rpi/vc4/imx708_wide_noir.json
+[0:40:43.408908531] [6029]  WARN CameraSensor camera_sensor_legacy.cpp:502 'imx708_wide_noir': No sensor delays found in static properties. Assuming unverified defaults.
+[0:40:43.409645595] [6029]  INFO Camera camera_manager.cpp:223 Adding camera '/base/soc/i2c0mux/i2c@1/imx708@1a' for pipeline handler rpi/vc4
+[0:40:43.409698464] [6029]  INFO RPI vc4.cpp:445 Registered camera /base/soc/i2c0mux/i2c@1/imx708@1a to Unicam device /dev/media0 and ISP device /dev/media1
+[IMX708] Libcamera native auto-detection active (standard rpicam-hello behavior).
+[0:40:43.426061410] [5998]  INFO Camera camera.cpp:1216 configuring streams: (0) 960x540-BGR888/SMPTE170M/Rec709/None/Full (1) 4608x2592-SBGGR10_CSI2P/RAW
+[0:40:43.426556872] [6029]  INFO RPI vc4.cpp:620 Sensor: /base/soc/i2c0mux/i2c@1/imx708@1a - Selected sensor format: 4608x2592-SBGGR10_1X10/RAW - Selected unicam format: 4608x2592-pBAA/RAW
+[IMX708] Dynamic AWB mode updated to: AUTO (runtime ISP update, no camera restart)
+[API METADATA] Synchronized 5882 registered houses from DB (ULB: ULB_MH_AMRAVATI).
+[IMX708] Initialized successfully (960x540 @ 30.0 fps, PDAF: continuous, AWB: Auto, RB swap: True)
+[CAMERA] Active: imx708_wide_noir (Camera Module 3) on 'imx708' (960x540 @ 30.0 FPS | Autofocus: Continuous (PDAF))
+[POWER] Power & Battery supervisor thread running.
+[CAMERA STREAM] Mode: CONTINUOUS
+[RAW GNSS STREAM] Worker started -> Destination: https://solidwasteapinew.scipl.info.in/api/SWSTP-AMRMC-001/live_location @ 5.0 Hz
+
+=================================================================
+ [HARDWARE] RTC MODULE (DS3231) -> ONLINE & SYNCHRONIZED
+            System clock: 2026-11-20T12:21:22
+=================================================================
+
+[ROI] Restored Area of Interest (4 pts) from /home/solid-waste/MotionFull/swstp_edge/roi_polygon.json
+[ROI] Same polygon used as Area of Disinterest for litter detection.
+[LEDS] Boot splash complete.
+qt.qpa.plugin: Could not find the Qt platform plugin "wayland" in "/home/solid-waste/MotionFull/swstp_edge/venv/lib/python3.13/site-packages/cv2/qt/plugins"
+[API METADATA] Synchronized 1236 road geometry layers from DB.
+[RAW GNSS STREAM] Network note for https://solidwasteapinew.scipl.info.in/api/SWSTP-AMRMC-001/live_location: HTTPSConnectionPool(host='solidwasteapinew.scipl.info.in', port=443): Max retries exceeded with url: /api/SWSTP-AMRMC-001/live_location (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate (_ssl.c:1029)')))
+[SESSION BIND] Telemetry Session #20105 AUTHENTICATED for Vehicle 'MH-29-NP-4001' (Device: SWSTP-AMRMC-001)
+[AUTH RECOVERED] Device 'SWSTP-AMRMC-001' session #20105 bound. Resuming evidence backlog uploads.
+[SETUP] Entering startup ROI/AoD configuration screen.
+[SETUP] Press Enter/Space to use saved polygon, or draw a new one.
+
+[ROI/AoD SETUP] Startup polygon configuration:
+  Setup display: 1280×720  (camera capture: 960×540)
+  The same polygon is used as Motion ROI and Litter AoD.
+  • Left-click  : place a new point
+  • Right-click : undo last point
+  • C key       : clear and start fresh
+  • W key       : cycle AWB white balance mode (Auto → Daylight → Cloudy → Indoor → Fluorescent)
+  • V key       : toggle Red/Blue color channel swap
+  • Enter/Space : confirm new polygon (need ≥3 pts), or keep saved polygon
+  • Esc         : skip — use current saved polygon as-is
+
+[API METADATA] Synchronized 1 safe zones from DB (ULB: ULB_MH_AMRAVATI).
+[SESSION BIND] Telemetry Session #20105 AUTHENTICATED for Vehicle 'MH-29-NP-4001' (Device: SWSTP-AMRMC-001)
+[GNSS] Receiver detected at 9600 baud.
+[GNSS] Configuring UART1 to 115200 baud...
+[ROI/AoD SETUP] Using saved polygon (4 pts). Proceeding.
+[SETUP] ROI/AoD confirmed: 4 pts. Starting detection loop.
+
+[LITTER] Engine initializing — weights: /home/solid-waste/MotionFull/swstp_edge/weights/best.onnx
+[LITTER] Distance trigger: 5.0m (GNSS only | clock fallback disabled) | Output: /home/solid-waste/MotionFull/swstp_edge/captures/litter
+[INIT] Unified Edge Gateway running.
+  Controls: [t] Toggle Camera | [r] Plot ROI/AoD | [v] Toggle Colors | [c] Clear | [q] Quit
+
+[LEDS] System READY: Camera & motion engine running.
+[LITTER TRIGGER] ⚠️  GNSS hardware fix lost. Distance trigger paused (clock fallback disabled).
+[DETECTOR] Loaded /home/solid-waste/MotionFull/swstp_edge/weights/best.onnx via ONNX Runtime (CPU, 4 threads)
+[LITTER] YOLO model loaded and ready.
+[GNSS] Verifying new baud rate...
+
+[CAMERA STREAM] Active -> Streaming frames to https://solidwasteapi.scipl.info.in/api/camera/SWSTP-AMRMC-001/frame @ 3.0 FPS (HTTP 200 OK)
+
+
+[RTC-RECALIBRATE] Starting hourly internet recalibration...
+  [RECALIBRATE] [OK] Internet time verified: 2026-11-20 12:21:25 IST (0.in.pool.ntp.org)
+======================================================================
+[VEHICLE STOP DETECTED] Stop #1 Started
+----------------------------------------------------------------------
+  Start Time (RTC): 2026-11-20T12:21:24 (confirmed at 2026-11-20T12:21:25)
+  GNSS Speed:       0.0 km/h (< 5.0 km/h)
+  IMU Dynamics:     dyn_accel: 0.008 m/s² | gyro_mag: 0.09 °/s | at rest
+  Sensor Fusion:    GNSS+IMU agree → fast confirm (debounce: 0.9s, confirmed in 1.0s)
+  Status:           Stop timer started (00m 00s (1.0s) elapsed since rest began). House status unchanged until camera frame confirmed.
+======================================================================
+  [RECALIBRATE] [OK] Clock & DS3231 calibrated successfully (sysclock=True, rtc=True).
+
+[RTC-SYNC] Background initial clock sync successful on attempt #1.
+[GNSS] Receiver failed verification at 115200 baud on /dev/serial0.
+[CAMERA STREAM] Network error (attempt 1): HTTPSConnectionPool(host='solidwasteapi.scipl.info.in', port=443): Read timed out. (read timeout=1.5)
+
+======================================================================
+[STOP EVENT CONCLUDED] Vehicle Resumed Motion -- Stop #1 Summary Report
+----------------------------------------------------------------------
+  Stop Index:             Stop #1
+  Start Time (RTC):       2026-11-20T12:21:24
+  End Time (RTC):         2026-11-20T12:21:28
+  Total Stopped Duration: 00m 04s (4.3s)
+  Start Coordinates:      N/A
+  End Coordinates:        N/A
+  Stationary GNSS Drift:  Max displacement 0.00 m from stop origin
+  Conclusion Trigger:     Edge gateway shutdown
+  Motion Frames Captured: 0 frame(s)
+  No motion frames triggered camera capture during this stop.
+======================================================================
+
+
+[SESSION LOG] Session summary written -> /home/solid-waste/MotionFull/swstp_edge/logs/sessions/2026-11-20_12-21-21_SWSTP-AMRMC-001.json
+  Runtime          : 7 s
+  Stops observed   : 1
+  Motion captures  : 0
+  Litter inferences: 0
+  Litter detections: 0 frames with >= 1 object
+
+[LITTER] Shutting down — waiting for pending inference & saves...
+[LITTER] Engine shutdown complete.
+[LEDS] System FAULT: Edge gateway shutting down — Yellow OFF, Red blinking.
+[GNSS] Receiver detected at 9600 baud.
+[GNSS] Configuring UART1 to 115200 baud...
+[GNSS] Verifying new baud rate...
+[GNSS] Receiver failed verification at 115200 baud on /dev/serial0.
+
+[UNIFIED GATEWAY STOPPED] Motion captures: 0 | Litter events: 0
+(venv) solid-waste@raspberrypi:~/MotionFull/swstp_edge $ ^C
+(venv) solid-waste@raspberrypi:~/MotionFull/swstp_edge $ ^C
+(venv) solid-waste@raspberrypi:~/MotionFull/swstp_edge $ python test
+test_all_sensors.py  tests/               
+(venv) solid-waste@raspberrypi:~/MotionFull/swstp_edge $ python test_all_sensors.py 
+
+======================================================================
+                   SWSTP EDGE -- SENSOR DIAGNOSTIC                    
+                RTC  .  IMU  .  GNSS  .  PiCam  .  LTE                
+                         2026-11-20  12:27:56                         
+======================================================================
+
+══════════════════════════════════════════════════════════════════════
+  RTC — DS3231 Hardware Clock  (I2C 0x68)
+══════════════════════════════════════════════════════════════════════
+
+  Initialising RTC (NTP sync + hardware detection)…
+[RTC] Scanning Linux kernel RTC subsystem (/sys/class/rtc)...
+[RTC] No kernel-managed RTC found matching '1-0068' in /sys/class/rtc — falling back to direct SMBus probe.
+[RTC] ✔ DS3231 detected via direct SMBus access.
+[RTC]   I²C bus      : 1
+[RTC]   I²C address  : 0x68
+[RTC]   Access mode  : Direct SMBus (fast hardware-first init)
+[RTC]   Hardware time: 2026-11-20 12:27:56 IST
+[RTC]   Clock source : DS3231 (Timezone: Asia/Kolkata)
+
+  ✔  DS3231 RTC detected — direct SMBus access
+  ✔  Hardware present    : True
+  ✔  Access mode         : Direct SMBus
+
+  ▶ Detection status
+    Hardware present            True
+    Module status OK            True
+    Access mode                 smbus
+    Kernel RTC device           N/A
+    Kernel identifier           N/A
+    Sync source                 ds3231
+    Error                       None
+
+  ▶ RTC read() output
+    valid                       True
+    timestamp (IST)             2026-11-20T12:27:56
+    epoch                       1795157876005 ms
+    timezone                    Asia/Kolkata
+    hw_source                   smbus
+
+  ▶ System clock cross-check
+    System time (local)         2026-11-20T12:27:56
+    RTC ↔ system drift          0 s
+──────────────────────────────────────────────────────────────────────
+══════════════════════════════════════════════════════════════════════
+  IMU — MPU-6500  (I2C 0x69)
+══════════════════════════════════════════════════════════════════════
+
+  Initialising IMU (calibration takes ~1 s — keep still)…
+[IMU] Loaded saved calibration (provisional, saved 2026-11-20T12:21:18)
+[IMU] Detected sensor at 0x69 (WHO_AM_I=0x70) — configured ±2g, ±250°/s, DLPF 42Hz
+[IMU] Calibration (boot) ACCEPTED (replaced, provisional) | spread gyro=0.061 °/s accel=0.0038 g, temp=27.1 °C | gyro bias=(-0.153, +2.716, +0.179) °/s
+[IMU] READY — MPU sensor at 0x69 on SMBus(1) (boot calibration).
+
+  ✔  MPU-6500 initialised and calibrated
+    imu_ok                      True
+
+  Reading 5 samples (0.5 s interval)…
+
+  ── Sample 1/5 ──────────────────────────────────────
+
+  ▶ Accelerometer
+    accel_g   x / y / z         -0.0007  -0.0034  +0.9974 g
+    accel_ms2 x / y / z         -0.0071  -0.0332  +9.7813 m/s²
+    magnitude                   +9.7814 m/s²
+
+  ▶ Gyroscope
+    gyro_dps  x / y / z         +0.0687  +0.0011  +0.0731 °/s
+
+  ▶ Temperature
+    temperature_c               27.08 °C
+
+  ▶ Orientation  (complementary filter)
+    roll                        -0.004 °
+    pitch                       +0.001 °
+    yaw                         +0.000 °  (gyro-integrated)
+    yaw_source                  GYRO_INTEGRATED
+
+  ▶ Quaternion  (Tait-Bryan Z-Y-X)
+    w / x / y / z               +1.000000  -0.000033  +0.000007  +0.000001
+  ── Sample 2/5 ──────────────────────────────────────
+
+  ▶ Accelerometer
+    accel_g   x / y / z         +0.0007  +0.0003  +0.9994 g
+    accel_ms2 x / y / z         +0.0073  +0.0027  +9.8005 m/s²
+    magnitude                   +9.8005 m/s²
+
+  ▶ Gyroscope
+    gyro_dps  x / y / z         +0.0458  -0.0065  -0.0490 °/s
+
+  ▶ Temperature
+    temperature_c               27.08 °C
+
+  ▶ Orientation  (complementary filter)
+    roll                        -0.001 °
+    pitch                       -0.000 °
+    yaw                         -0.002 °  (gyro-integrated)
+    yaw_source                  GYRO_INTEGRATED
+
+  ▶ Quaternion  (Tait-Bryan Z-Y-X)
+    w / x / y / z               +1.000000  -0.000010  -0.000003  -0.000020
+  ── Sample 3/5 ──────────────────────────────────────
+
+  ▶ Accelerometer
+    accel_g   x / y / z         +0.0027  -0.0005  +0.9918 g
+    accel_ms2 x / y / z         +0.0264  -0.0045  +9.7263 m/s²
+    magnitude                   +9.7263 m/s²
+
+  ▶ Gyroscope
+    gyro_dps  x / y / z         +0.0916  +0.0546  +0.0121 °/s
+
+  ▶ Temperature
+    temperature_c               27.08 °C
+
+  ▶ Orientation  (complementary filter)
+    roll                        +0.003 °
+    pitch                       -0.001 °
+    yaw                         -0.002 °  (gyro-integrated)
+    yaw_source                  GYRO_INTEGRATED
+
+  ▶ Quaternion  (Tait-Bryan Z-Y-X)
+    w / x / y / z               +1.000000  +0.000025  -0.000007  -0.000015
+  ── Sample 4/5 ──────────────────────────────────────
+
+  ▶ Accelerometer
+    accel_g   x / y / z         +0.0020  +0.0010  +0.9969 g
+    accel_ms2 x / y / z         +0.0192  +0.0099  +9.7766 m/s²
+    magnitude                   +9.7766 m/s²
+
+  ▶ Gyroscope
+    gyro_dps  x / y / z         -0.0611  -0.1057  +0.0350 °/s
+
+  ▶ Temperature
+    temperature_c               27.09 °C
+
+  ▶ Orientation  (complementary filter)
+    roll                        +0.001 °
+    pitch                       -0.008 °
+    yaw                         +0.000 °  (gyro-integrated)
+    yaw_source                  GYRO_INTEGRATED
+
+  ▶ Quaternion  (Tait-Bryan Z-Y-X)
+    w / x / y / z               +1.000000  +0.000008  -0.000072  +0.000000
+  ── Sample 5/5 ──────────────────────────────────────
+
+  ▶ Accelerometer
+    accel_g   x / y / z         -0.0012  -0.0002  +1.0040 g
+    accel_ms2 x / y / z         -0.0119  -0.0021  +9.8460 m/s²
+    magnitude                   +9.8460 m/s²
+
+  ▶ Gyroscope
+    gyro_dps  x / y / z         +0.0076  +0.0927  +0.1189 °/s
+
+  ▶ Temperature
+    temperature_c               27.09 °C
+
+  ▶ Orientation  (complementary filter)
+    roll                        +0.001 °
+    pitch                       -0.002 °
+    yaw                         +0.006 °  (gyro-integrated)
+    yaw_source                  GYRO_INTEGRATED
+
+  ▶ Quaternion  (Tait-Bryan Z-Y-X)
+    w / x / y / z               +1.000000  +0.000009  -0.000018  +0.000052
+──────────────────────────────────────────────────────────────────────
+══════════════════════════════════════════════════════════════════════
+  GNSS — u-blox MAX-M10S Hardware GNSS Diagnostic
+══════════════════════════════════════════════════════════════════════
+
+  Starting MAX-M10S GNSS serial reader → /dev/serial0 @ 9600 baud
+[GNSS] Initializing receiver...
+[GNSS] Checking communication at 115200 baud...
+[GNSS] No response at 115200 baud.
+[GNSS] Checking communication at 9600 baud...
+[GNSS] Receiver detected at 9600 baud.
+[GNSS] Configuring UART1 to 115200 baud...
+[GNSS] Verifying new baud rate...
+[GNSS] Receiver failed verification at 115200 baud on /dev/serial0.
+  Waiting up to 30 s for MAX-M10S GNSS data …
+
+  \  Status: NO_DATA     sats= 0  sats_in_view= 0  [26s left]   [GNSS] Receiver detected at 9600 baud.
+[GNSS] Configuring UART1 to 115200 baud...
+[GNSS] Verifying new baud rate...
+  |  Status: NO_DATA     sats= 0  sats_in_view= 0  [25s left]   [GNSS] Receiver failed verification at 115200 baud on /dev/serial0.
+  |  Status: NO_DATA     sats= 0  sats_in_view= 0  [21s left]   [GNSS] Receiver detected at 9600 baud.
+[GNSS] Configuring UART1 to 115200 baud...
+[GNSS] Verifying new baud rate...
+  /  Status: NO_DATA     sats= 0  sats_in_view= 0  [20s left]   [GNSS] Receiver failed verification at 115200 baud on /dev/serial0.
+  /  Status: NO_DATA     sats= 0  sats_in_view= 0  [16s left]   [GNSS] Receiver detected at 9600 baud.
+[GNSS] Configuring UART1 to 115200 baud...
+[GNSS] Verifying new baud rate...
+  ─  Status: NO_DATA     sats= 0  sats_in_view= 0  [15s left]   [GNSS] Receiver failed verification at 115200 baud on /dev/serial0.
+  ─  Status: NO_DATA     sats= 0  sats_in_view= 0  [11s left]   [GNSS] Receiver detected at 9600 baud.
+[GNSS] Configuring UART1 to 115200 baud...
+[GNSS] Verifying new baud rate...
+  \  Status: NO_DATA     sats= 0  sats_in_view= 0  [10s left]   [GNSS] Receiver failed verification at 115200 baud on /dev/serial0.
+  \  Status: NO_DATA     sats= 0  sats_in_view= 0  [ 6s left]   [GNSS] Receiver detected at 9600 baud.
+[GNSS] Configuring UART1 to 115200 baud...
+[GNSS] Verifying new baud rate...
+  |  Status: NO_DATA     sats= 0  sats_in_view= 0  [ 5s left]   [GNSS] Receiver failed verification at 115200 baud on /dev/serial0.
+  |  Status: NO_DATA     sats= 0  sats_in_view= 0  [ 1s left]   [GNSS] Receiver detected at 9600 baud.
+[GNSS] Configuring UART1 to 115200 baud...
+[GNSS] Verifying new baud rate...
+  /  Status: NO_DATA     sats= 0  sats_in_view= 0  [ 0s left]   [GNSS] Receiver failed verification at 115200 baud on /dev/serial0.
+
+
+  ✘  No GNSS data received (status=NO_DATA). Check MAX-M10S UART wiring (TX->RXD Pin 10, RX->TXD Pin 8), power (3.3V/5V), and enable_uart=1 in /boot/firmware/config.txt.
+
+  ▶ u-blox MAX-M10S GNSS read() snapshot
+    primary_module              u-blox MAX-M10S
+    active_port                 /dev/serial0
+    active_baud                 115200
+    data_received               False
+    fix                         False
+    status                      NO_DATA
+    latitude                    None °
+    longitude                   None °
+    altitude_m                  None m
+    speed_kmh                   None km/h
+    course_deg                  None °
+    satellites (in fix)         0
+    satellites_in_view          0
+    satellite_records           0
+    hdop                        None
+    gnss_ok flag                False
+  ⚠  No satellite detail available (GSV not yet received or snapshot expired)
+──────────────────────────────────────────────────────────────────────
+══════════════════════════════════════════════════════════════════════
+  PiCamera — Sony IMX708 (Camera Module 3)
+══════════════════════════════════════════════════════════════════════
+
+  Checking Picamera2 library…
+  ✔  picamera2 package is installed and importable
+
+  ▶ Sensor hardware detection
+[0:47:56.726463849] [6998]  INFO Camera camera_manager.cpp:340 libcamera v0.7.2+rpt20260817
+[0:47:56.750675691] [7069]  WARN CameraSensorProperties camera_sensor_properties.cpp:612 No static properties available for 'imx708_wide_noir'
+[0:47:56.750748506] [7069]  WARN CameraSensorProperties camera_sensor_properties.cpp:614 Please consider updating the camera sensor properties database
+[0:47:56.829117256] [7069]  INFO RPI pipeline_base.cpp:1133 Using configuration file '/usr/share/libcamera/pipeline/rpi/vc4/rpi_apps.yaml'
+[0:47:56.862762050] [7069]  INFO IPAProxy ipa_proxy.cpp:184 Using tuning file /usr/share/libcamera/ipa/rpi/vc4/imx708_wide_noir.json
+[0:47:56.868637961] [7069]  WARN CameraSensor camera_sensor_legacy.cpp:502 'imx708_wide_noir': No sensor delays found in static properties. Assuming unverified defaults.
+[0:47:56.869262184] [7069]  INFO Camera camera_manager.cpp:223 Adding camera '/base/soc/i2c0mux/i2c@1/imx708@1a' for pipeline handler rpi/vc4
+[0:47:56.869290743] [7069]  INFO RPI vc4.cpp:445 Registered camera /base/soc/i2c0mux/i2c@1/imx708@1a to Unicam device /dev/media0 and ISP device /dev/media1
+  ✔  IMX708 hardware confirmed: Sony IMX708 [Camera Module 3 (Wide FOV) (NoIR)]
+    Detected                    True
+    Model                       Sony IMX708 [Camera Module 3 (Wide FOV) (NoIR)]
+    Backend                     picamera2
+    Details                     Picamera2 ID: /base/soc/i2c0mux/i2c@1/imx708@1a, Model: imx708_wide_noir
+
+  ▶ Camera initialisation (640x480 @ 30.0 FPS, AF: CONTINUOUS)
+[IMX708] Libcamera native auto-detection active (standard rpicam-hello behavior).
+[0:47:56.877600132] [6998]  INFO Camera camera.cpp:1216 configuring streams: (0) 640x480-BGR888/SMPTE170M/Rec709/None/Full (1) 4608x2592-SBGGR10_CSI2P/RAW
+[0:47:56.878166643] [7069]  INFO RPI vc4.cpp:620 Sensor: /base/soc/i2c0mux/i2c@1/imx708@1a - Selected sensor format: 4608x2592-SBGGR10_1X10/RAW - Selected unicam format: 4608x2592-pBAA/RAW
+[IMX708] Dynamic AWB mode updated to: AUTO (runtime ISP update, no camera restart)
+[IMX708] Initialized successfully (640x480 @ 30.0 fps, PDAF: continuous, AWB: Auto, RB swap: True)
+  ⚠  camera.IMX708CameraCapture not used ('IMX708CameraCapture' object has no attribute 'is_opened'). Falling back to direct Picamera2.
+[0:47:57.971621851] [6998] ERROR Camera camera.cpp:702 Camera in Running state trying acquire() requiring state Available
+Camera __init__ sequence did not complete.
+  ✘  Camera initialisation failed: Camera __init__ sequence did not complete.
+──────────────────────────────────────────────────────────────────────
+══════════════════════════════════════════════════════════════════════
+  LTE — Cellular / Modem Connectivity
+══════════════════════════════════════════════════════════════════════
+
+  ▶ Network interfaces
+      lo                          UNKNOWN
+      eth0                        DOWN
+      wlan0                       UP
+      usb0                        UNKNOWN
+  ⚠  LTE interface usb0 is UNKNOWN
+
+  ▶ Default route
+  ✔  Default route present
+    Default route               default via 192.168.1.1 dev usb0 proto dhcp src 192.168.1.6 metric 100
+    Gateway                     192.168.1.1
+
+  ▶ Internet reachability (DNS & HTTP probe)
+  ✔  DNS resolution working (dns.google resolved)
+  ✔  HTTP probe succeeded (HTTP 204, 185 ms)
+    DNS OK                      True
+    HTTP OK                     True
+    HTTP status                 204
+    HTTP latency                185 ms
+
+  ▶ Modem / SIM status (ModemManager mmcli)
+  ⚠  mmcli not found (install via: sudo apt install -y modemmanager)
+    mmcli available             False
+    Modem state                 N/A
+    SIM / Reg state             N/A
+    Operator                    N/A
+    Access tech                 N/A
+    Signal quality              N/A
+
+  ▶ Cellular modem hardware scan (serial / USB / sysfs)
+  ✔  Cellular serial devices present: /dev/ttyUSB6, /dev/ttyUSB5, /dev/ttyUSB4, /dev/ttyUSB3, /dev/ttyUSB2, /dev/ttyUSB1, /dev/ttyUSB0
+    Modem serial ports          /dev/ttyUSB6, /dev/ttyUSB5, /dev/ttyUSB4, /dev/ttyUSB3, /dev/ttyUSB2, /dev/ttyUSB1, /dev/ttyUSB0
+    Modem USB chip              Quectel
+
+  ▶ LTE status LED hardware test
+    LED GPIO Pin                BCM 10 (Physical 19)
+  ✔  LTE LED pin configured in config.py
+
+  ✔  LTE / connectivity test PASSED — internet is reachable
+──────────────────────────────────────────────────────────────────────
+══════════════════════════════════════════════════════════════════════
+  SUMMARY
+══════════════════════════════════════════════════════════════════════
+
+  ✔  RTC    -- PASSED
+  ✔  IMU    -- PASSED
+  ✘  GNSS   -- FAILED / not detected
+  ✘  PiCam  -- FAILED / not detected
+  ✔  LTE    -- PASSED
+
+======================================================================
+
+(venv) solid-waste@raspberrypi:~/MotionFull/swstp_edge $ python tests/test_max_m10s_gnss.py 
+[*] Auto-detected GNSS port: /dev/serial0
+[*] Opening serial connection on /dev/serial0 @ 9600 baud...
+[*] Listening for NMEA sentences from u-blox MAX-M10S... (Press Ctrl+C to stop)
+
++==============================================================================+
+|                  u-blox MAX-M10S GNSS LIVE DASHBOARD                         |
++==============================================================================+
+ Port: /dev/serial0 (9600 baud) | Rate: 20.4 Hz | Status: 3D FIX (Solid)
+--------------------------------------------------------------------------------
+>> POSITION & COORDINATES:
+   Latitude  : 20.9560107°  (20° 57' 21.64" N)
+   Longitude : 77.7634747°  (77° 45' 48.51" E)
+   Altitude  : 334.9 m (1098.8 ft)
+--------------------------------------------------------------------------------
+>> MOTION & DYNAMICS:
+   Speed     : 4.7 km/h  (2.6 knots)
+   Heading   : 341.9° [NNW]
+--------------------------------------------------------------------------------
+>> SATELLITES & ACCURACY (DOP):
+   Satellites: 8 used in fix / 8 in view
+   Precision : HDOP=1.63 (EXCELLENT) | VDOP=1.58 | PDOP=2.27
+   PRNs Used : None
+   Signals   : GPS#01:00dB[-----] | GPS#02:00dB[-----] | GPS#04:00dB[-----] | GPS#16:00dB[-----] | GPS#21:00dB[-----] | GPS#27:00dB[-----]
+--------------------------------------------------------------------------------
+>> TIME & PRECISION METRICS:
+   Local Time: 12:29:15 IST | UTC: 06:59:15 | Date: 2026-11-20
+   Drift Std : 1.62 m (Max spread: 3.12 m across 27 samples)
+   Sentences : Total=137 | Checksum OK=137 | Errors=0
++==============================================================================+
+ Press Ctrl+C to exit.
+^C
+=================================================================
+            u-blox MAX-M10S GNSS TEST SUMMARY REPORT
+=================================================================
+ Port Tested             : /dev/serial0 @ 9600 baud
+ Total Sentences Read    : 137
+ Checksum Valid          : 137
+ Checksum Errors         : 0
+ Last Position Fix       : 20.9560107°, 77.7634747°
+ Last Altitude           : 334.9 m
+ Satellites Used/In View : 8 / 8
+ Final HDOP              : 1.63
+ Stationary Drift StdDev : 1.62 meters
+=================================================================
+
+(venv) solid-waste@raspberrypi:~/MotionFull/swstp_edge $ ^C
+(venv) solid-waste@raspberrypi:~/MotionFull/swstp_edge $ 
+
+
