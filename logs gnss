@@ -1,535 +1,337 @@
-solid-waste@raspberrypi:~ $ cd MotionFull/swstp_edge/
-solid-waste@raspberrypi:~/MotionFull/swstp_edge $ source venv/bin/activate
-(venv) solid-waste@raspberrypi:~/MotionFull/swstp_edge $ python main.py 
-
-=== SWSTP UNIFIED SENSOR INIT ===
-[RTC] Scanning Linux kernel RTC subsystem (/sys/class/rtc)...
-[RTC] No kernel-managed RTC found matching '1-0068' in /sys/class/rtc — falling back to direct SMBus probe.
-[RTC] ✔ DS3231 detected via direct SMBus access.
-[RTC]   I²C bus      : 1
-[RTC]   I²C address  : 0x68
-[RTC]   Access mode  : Direct SMBus (fast hardware-first init)
-[RTC]   Hardware time: 2026-11-20 12:21:16 IST
-[RTC]   Clock source : DS3231 (Timezone: Asia/Kolkata)
-[IMU] Loaded saved calibration (provisional, saved 2026-11-20T12:05:45)
-[IMU] Detected sensor at 0x69 (WHO_AM_I=0x70) — configured ±2g, ±250°/s, DLPF 42Hz
-[IMU] Calibration (boot) ACCEPTED (replaced, provisional) | spread gyro=0.063 °/s accel=0.0038 g, temp=26.6 °C | gyro bias=(-0.163, +2.733, +0.128) °/s
-[IMU] READY — MPU sensor at 0x69 on SMBus(1) (boot calibration).
-[GNSS] Initializing receiver...
-[GNSS] Checking communication at 115200 baud...
-[GNSS] No response at 115200 baud.
-[GNSS] Checking communication at 9600 baud...
-[GNSS] Receiver detected at 9600 baud.
-[GNSS] Configuring UART1 to 115200 baud...
-[GNSS] Verifying new baud rate...
-[GNSS] Receiver failed verification at 115200 baud on /dev/serial0.
-[LEDS] GPIO LED driver initialised.
-
-========================================================
- SWSTP UNIFIED EDGE GATEWAY INITIALIZING (Raspberry Pi 4B)
- Backend:          https://solidwasteapi.scipl.info.in
- Device ID:        SWSTP-AMRMC-001
- Vehicle ID:       SWSTP-AMRMC-001
- Raw GNSS Stream:  POST https://solidwasteapinew.scipl.info.in/api/SWSTP-AMRMC-001/live_location @ 5.0Hz
- ULB ID:           ULB_MH_AMRAVATI
- Session ID:       DYNAMIC HARDWARE BIND
- Timezone:         Asia/Kolkata (IST, UTC+05:30)
- Motion Captures:  /home/solid-waste/MotionFull/swstp_edge/captures/motion
- Litter Captures:  /home/solid-waste/MotionFull/swstp_edge/captures/litter
- Litter Weights:   /home/solid-waste/MotionFull/swstp_edge/weights/best.onnx
- Litter Trigger:   every 5.0m (GNSS only)
- Litter Detection: ENABLED
- RTC:              OK (DS3231) [DS3231]
- IMU:              OK (MPU-6500 @ 0x69)
- GNSS:             u-blox MAX-M10S reader started (/dev/serial0 @ 115200 baud)
-========================================================
-
-[SESSION LOG] Logging to: /home/solid-waste/MotionFull/swstp_edge/logs/sessions/2026-11-20_12-21-21_SWSTP-AMRMC-001.json
-[0:40:43.247192569] [5998]  INFO Camera camera_manager.cpp:340 libcamera v0.7.2+rpt20260817
-[0:40:43.294327075] [6029]  WARN CameraSensorProperties camera_sensor_properties.cpp:612 No static properties available for 'imx708_wide_noir'
-[0:40:43.294378685] [6029]  WARN CameraSensorProperties camera_sensor_properties.cpp:614 Please consider updating the camera sensor properties database
-[0:40:43.378968698] [6029]  INFO RPI pipeline_base.cpp:1133 Using configuration file '/usr/share/libcamera/pipeline/rpi/vc4/rpi_apps.yaml'
-[0:40:43.403526200] [6029]  INFO IPAProxy ipa_proxy.cpp:184 Using tuning file /usr/share/libcamera/ipa/rpi/vc4/imx708_wide_noir.json
-[0:40:43.408908531] [6029]  WARN CameraSensor camera_sensor_legacy.cpp:502 'imx708_wide_noir': No sensor delays found in static properties. Assuming unverified defaults.
-[0:40:43.409645595] [6029]  INFO Camera camera_manager.cpp:223 Adding camera '/base/soc/i2c0mux/i2c@1/imx708@1a' for pipeline handler rpi/vc4
-[0:40:43.409698464] [6029]  INFO RPI vc4.cpp:445 Registered camera /base/soc/i2c0mux/i2c@1/imx708@1a to Unicam device /dev/media0 and ISP device /dev/media1
-[IMX708] Libcamera native auto-detection active (standard rpicam-hello behavior).
-[0:40:43.426061410] [5998]  INFO Camera camera.cpp:1216 configuring streams: (0) 960x540-BGR888/SMPTE170M/Rec709/None/Full (1) 4608x2592-SBGGR10_CSI2P/RAW
-[0:40:43.426556872] [6029]  INFO RPI vc4.cpp:620 Sensor: /base/soc/i2c0mux/i2c@1/imx708@1a - Selected sensor format: 4608x2592-SBGGR10_1X10/RAW - Selected unicam format: 4608x2592-pBAA/RAW
-[IMX708] Dynamic AWB mode updated to: AUTO (runtime ISP update, no camera restart)
-[API METADATA] Synchronized 5882 registered houses from DB (ULB: ULB_MH_AMRAVATI).
-[IMX708] Initialized successfully (960x540 @ 30.0 fps, PDAF: continuous, AWB: Auto, RB swap: True)
-[CAMERA] Active: imx708_wide_noir (Camera Module 3) on 'imx708' (960x540 @ 30.0 FPS | Autofocus: Continuous (PDAF))
-[POWER] Power & Battery supervisor thread running.
-[CAMERA STREAM] Mode: CONTINUOUS
-[RAW GNSS STREAM] Worker started -> Destination: https://solidwasteapinew.scipl.info.in/api/SWSTP-AMRMC-001/live_location @ 5.0 Hz
-
-=================================================================
- [HARDWARE] RTC MODULE (DS3231) -> ONLINE & SYNCHRONIZED
-            System clock: 2026-11-20T12:21:22
-=================================================================
-
-[ROI] Restored Area of Interest (4 pts) from /home/solid-waste/MotionFull/swstp_edge/roi_polygon.json
-[ROI] Same polygon used as Area of Disinterest for litter detection.
-[LEDS] Boot splash complete.
-qt.qpa.plugin: Could not find the Qt platform plugin "wayland" in "/home/solid-waste/MotionFull/swstp_edge/venv/lib/python3.13/site-packages/cv2/qt/plugins"
-[API METADATA] Synchronized 1236 road geometry layers from DB.
-[RAW GNSS STREAM] Network note for https://solidwasteapinew.scipl.info.in/api/SWSTP-AMRMC-001/live_location: HTTPSConnectionPool(host='solidwasteapinew.scipl.info.in', port=443): Max retries exceeded with url: /api/SWSTP-AMRMC-001/live_location (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate (_ssl.c:1029)')))
-[SESSION BIND] Telemetry Session #20105 AUTHENTICATED for Vehicle 'MH-29-NP-4001' (Device: SWSTP-AMRMC-001)
-[AUTH RECOVERED] Device 'SWSTP-AMRMC-001' session #20105 bound. Resuming evidence backlog uploads.
-[SETUP] Entering startup ROI/AoD configuration screen.
-[SETUP] Press Enter/Space to use saved polygon, or draw a new one.
-
-[ROI/AoD SETUP] Startup polygon configuration:
-  Setup display: 1280×720  (camera capture: 960×540)
-  The same polygon is used as Motion ROI and Litter AoD.
-  • Left-click  : place a new point
-  • Right-click : undo last point
-  • C key       : clear and start fresh
-  • W key       : cycle AWB white balance mode (Auto → Daylight → Cloudy → Indoor → Fluorescent)
-  • V key       : toggle Red/Blue color channel swap
-  • Enter/Space : confirm new polygon (need ≥3 pts), or keep saved polygon
-  • Esc         : skip — use current saved polygon as-is
-
-[API METADATA] Synchronized 1 safe zones from DB (ULB: ULB_MH_AMRAVATI).
-[SESSION BIND] Telemetry Session #20105 AUTHENTICATED for Vehicle 'MH-29-NP-4001' (Device: SWSTP-AMRMC-001)
-[GNSS] Receiver detected at 9600 baud.
-[GNSS] Configuring UART1 to 115200 baud...
-[ROI/AoD SETUP] Using saved polygon (4 pts). Proceeding.
-[SETUP] ROI/AoD confirmed: 4 pts. Starting detection loop.
-
-[LITTER] Engine initializing — weights: /home/solid-waste/MotionFull/swstp_edge/weights/best.onnx
-[LITTER] Distance trigger: 5.0m (GNSS only | clock fallback disabled) | Output: /home/solid-waste/MotionFull/swstp_edge/captures/litter
-[INIT] Unified Edge Gateway running.
-  Controls: [t] Toggle Camera | [r] Plot ROI/AoD | [v] Toggle Colors | [c] Clear | [q] Quit
-
-[LEDS] System READY: Camera & motion engine running.
-[LITTER TRIGGER] ⚠️  GNSS hardware fix lost. Distance trigger paused (clock fallback disabled).
-[DETECTOR] Loaded /home/solid-waste/MotionFull/swstp_edge/weights/best.onnx via ONNX Runtime (CPU, 4 threads)
-[LITTER] YOLO model loaded and ready.
-[GNSS] Verifying new baud rate...
-
-[CAMERA STREAM] Active -> Streaming frames to https://solidwasteapi.scipl.info.in/api/camera/SWSTP-AMRMC-001/frame @ 3.0 FPS (HTTP 200 OK)
-
-
-[RTC-RECALIBRATE] Starting hourly internet recalibration...
-  [RECALIBRATE] [OK] Internet time verified: 2026-11-20 12:21:25 IST (0.in.pool.ntp.org)
-======================================================================
-[VEHICLE STOP DETECTED] Stop #1 Started
-----------------------------------------------------------------------
-  Start Time (RTC): 2026-11-20T12:21:24 (confirmed at 2026-11-20T12:21:25)
-  GNSS Speed:       0.0 km/h (< 5.0 km/h)
-  IMU Dynamics:     dyn_accel: 0.008 m/s² | gyro_mag: 0.09 °/s | at rest
-  Sensor Fusion:    GNSS+IMU agree → fast confirm (debounce: 0.9s, confirmed in 1.0s)
-  Status:           Stop timer started (00m 00s (1.0s) elapsed since rest began). House status unchanged until camera frame confirmed.
-======================================================================
-  [RECALIBRATE] [OK] Clock & DS3231 calibrated successfully (sysclock=True, rtc=True).
-
-[RTC-SYNC] Background initial clock sync successful on attempt #1.
-[GNSS] Receiver failed verification at 115200 baud on /dev/serial0.
-[CAMERA STREAM] Network error (attempt 1): HTTPSConnectionPool(host='solidwasteapi.scipl.info.in', port=443): Read timed out. (read timeout=1.5)
-
-======================================================================
-[STOP EVENT CONCLUDED] Vehicle Resumed Motion -- Stop #1 Summary Report
-----------------------------------------------------------------------
-  Stop Index:             Stop #1
-  Start Time (RTC):       2026-11-20T12:21:24
-  End Time (RTC):         2026-11-20T12:21:28
-  Total Stopped Duration: 00m 04s (4.3s)
-  Start Coordinates:      N/A
-  End Coordinates:        N/A
-  Stationary GNSS Drift:  Max displacement 0.00 m from stop origin
-  Conclusion Trigger:     Edge gateway shutdown
-  Motion Frames Captured: 0 frame(s)
-  No motion frames triggered camera capture during this stop.
-======================================================================
-
-
-[SESSION LOG] Session summary written -> /home/solid-waste/MotionFull/swstp_edge/logs/sessions/2026-11-20_12-21-21_SWSTP-AMRMC-001.json
-  Runtime          : 7 s
-  Stops observed   : 1
-  Motion captures  : 0
-  Litter inferences: 0
-  Litter detections: 0 frames with >= 1 object
-
-[LITTER] Shutting down — waiting for pending inference & saves...
-[LITTER] Engine shutdown complete.
-[LEDS] System FAULT: Edge gateway shutting down — Yellow OFF, Red blinking.
-[GNSS] Receiver detected at 9600 baud.
-[GNSS] Configuring UART1 to 115200 baud...
-[GNSS] Verifying new baud rate...
-[GNSS] Receiver failed verification at 115200 baud on /dev/serial0.
-
-[UNIFIED GATEWAY STOPPED] Motion captures: 0 | Litter events: 0
-(venv) solid-waste@raspberrypi:~/MotionFull/swstp_edge $ ^C
-(venv) solid-waste@raspberrypi:~/MotionFull/swstp_edge $ ^C
-(venv) solid-waste@raspberrypi:~/MotionFull/swstp_edge $ python test
-test_all_sensors.py  tests/               
-(venv) solid-waste@raspberrypi:~/MotionFull/swstp_edge $ python test_all_sensors.py 
-
-======================================================================
-                   SWSTP EDGE -- SENSOR DIAGNOSTIC                    
-                RTC  .  IMU  .  GNSS  .  PiCam  .  LTE                
-                         2026-11-20  12:27:56                         
-======================================================================
-
-══════════════════════════════════════════════════════════════════════
-  RTC — DS3231 Hardware Clock  (I2C 0x68)
-══════════════════════════════════════════════════════════════════════
-
-  Initialising RTC (NTP sync + hardware detection)…
-[RTC] Scanning Linux kernel RTC subsystem (/sys/class/rtc)...
-[RTC] No kernel-managed RTC found matching '1-0068' in /sys/class/rtc — falling back to direct SMBus probe.
-[RTC] ✔ DS3231 detected via direct SMBus access.
-[RTC]   I²C bus      : 1
-[RTC]   I²C address  : 0x68
-[RTC]   Access mode  : Direct SMBus (fast hardware-first init)
-[RTC]   Hardware time: 2026-11-20 12:27:56 IST
-[RTC]   Clock source : DS3231 (Timezone: Asia/Kolkata)
-
-  ✔  DS3231 RTC detected — direct SMBus access
-  ✔  Hardware present    : True
-  ✔  Access mode         : Direct SMBus
-
-  ▶ Detection status
-    Hardware present            True
-    Module status OK            True
-    Access mode                 smbus
-    Kernel RTC device           N/A
-    Kernel identifier           N/A
-    Sync source                 ds3231
-    Error                       None
-
-  ▶ RTC read() output
-    valid                       True
-    timestamp (IST)             2026-11-20T12:27:56
-    epoch                       1795157876005 ms
-    timezone                    Asia/Kolkata
-    hw_source                   smbus
-
-  ▶ System clock cross-check
-    System time (local)         2026-11-20T12:27:56
-    RTC ↔ system drift          0 s
-──────────────────────────────────────────────────────────────────────
-══════════════════════════════════════════════════════════════════════
-  IMU — MPU-6500  (I2C 0x69)
-══════════════════════════════════════════════════════════════════════
-
-  Initialising IMU (calibration takes ~1 s — keep still)…
-[IMU] Loaded saved calibration (provisional, saved 2026-11-20T12:21:18)
-[IMU] Detected sensor at 0x69 (WHO_AM_I=0x70) — configured ±2g, ±250°/s, DLPF 42Hz
-[IMU] Calibration (boot) ACCEPTED (replaced, provisional) | spread gyro=0.061 °/s accel=0.0038 g, temp=27.1 °C | gyro bias=(-0.153, +2.716, +0.179) °/s
-[IMU] READY — MPU sensor at 0x69 on SMBus(1) (boot calibration).
-
-  ✔  MPU-6500 initialised and calibrated
-    imu_ok                      True
-
-  Reading 5 samples (0.5 s interval)…
-
-  ── Sample 1/5 ──────────────────────────────────────
-
-  ▶ Accelerometer
-    accel_g   x / y / z         -0.0007  -0.0034  +0.9974 g
-    accel_ms2 x / y / z         -0.0071  -0.0332  +9.7813 m/s²
-    magnitude                   +9.7814 m/s²
-
-  ▶ Gyroscope
-    gyro_dps  x / y / z         +0.0687  +0.0011  +0.0731 °/s
-
-  ▶ Temperature
-    temperature_c               27.08 °C
-
-  ▶ Orientation  (complementary filter)
-    roll                        -0.004 °
-    pitch                       +0.001 °
-    yaw                         +0.000 °  (gyro-integrated)
-    yaw_source                  GYRO_INTEGRATED
-
-  ▶ Quaternion  (Tait-Bryan Z-Y-X)
-    w / x / y / z               +1.000000  -0.000033  +0.000007  +0.000001
-  ── Sample 2/5 ──────────────────────────────────────
-
-  ▶ Accelerometer
-    accel_g   x / y / z         +0.0007  +0.0003  +0.9994 g
-    accel_ms2 x / y / z         +0.0073  +0.0027  +9.8005 m/s²
-    magnitude                   +9.8005 m/s²
-
-  ▶ Gyroscope
-    gyro_dps  x / y / z         +0.0458  -0.0065  -0.0490 °/s
-
-  ▶ Temperature
-    temperature_c               27.08 °C
-
-  ▶ Orientation  (complementary filter)
-    roll                        -0.001 °
-    pitch                       -0.000 °
-    yaw                         -0.002 °  (gyro-integrated)
-    yaw_source                  GYRO_INTEGRATED
-
-  ▶ Quaternion  (Tait-Bryan Z-Y-X)
-    w / x / y / z               +1.000000  -0.000010  -0.000003  -0.000020
-  ── Sample 3/5 ──────────────────────────────────────
-
-  ▶ Accelerometer
-    accel_g   x / y / z         +0.0027  -0.0005  +0.9918 g
-    accel_ms2 x / y / z         +0.0264  -0.0045  +9.7263 m/s²
-    magnitude                   +9.7263 m/s²
-
-  ▶ Gyroscope
-    gyro_dps  x / y / z         +0.0916  +0.0546  +0.0121 °/s
-
-  ▶ Temperature
-    temperature_c               27.08 °C
-
-  ▶ Orientation  (complementary filter)
-    roll                        +0.003 °
-    pitch                       -0.001 °
-    yaw                         -0.002 °  (gyro-integrated)
-    yaw_source                  GYRO_INTEGRATED
-
-  ▶ Quaternion  (Tait-Bryan Z-Y-X)
-    w / x / y / z               +1.000000  +0.000025  -0.000007  -0.000015
-  ── Sample 4/5 ──────────────────────────────────────
-
-  ▶ Accelerometer
-    accel_g   x / y / z         +0.0020  +0.0010  +0.9969 g
-    accel_ms2 x / y / z         +0.0192  +0.0099  +9.7766 m/s²
-    magnitude                   +9.7766 m/s²
-
-  ▶ Gyroscope
-    gyro_dps  x / y / z         -0.0611  -0.1057  +0.0350 °/s
-
-  ▶ Temperature
-    temperature_c               27.09 °C
-
-  ▶ Orientation  (complementary filter)
-    roll                        +0.001 °
-    pitch                       -0.008 °
-    yaw                         +0.000 °  (gyro-integrated)
-    yaw_source                  GYRO_INTEGRATED
-
-  ▶ Quaternion  (Tait-Bryan Z-Y-X)
-    w / x / y / z               +1.000000  +0.000008  -0.000072  +0.000000
-  ── Sample 5/5 ──────────────────────────────────────
-
-  ▶ Accelerometer
-    accel_g   x / y / z         -0.0012  -0.0002  +1.0040 g
-    accel_ms2 x / y / z         -0.0119  -0.0021  +9.8460 m/s²
-    magnitude                   +9.8460 m/s²
-
-  ▶ Gyroscope
-    gyro_dps  x / y / z         +0.0076  +0.0927  +0.1189 °/s
-
-  ▶ Temperature
-    temperature_c               27.09 °C
-
-  ▶ Orientation  (complementary filter)
-    roll                        +0.001 °
-    pitch                       -0.002 °
-    yaw                         +0.006 °  (gyro-integrated)
-    yaw_source                  GYRO_INTEGRATED
-
-  ▶ Quaternion  (Tait-Bryan Z-Y-X)
-    w / x / y / z               +1.000000  +0.000009  -0.000018  +0.000052
-──────────────────────────────────────────────────────────────────────
-══════════════════════════════════════════════════════════════════════
-  GNSS — u-blox MAX-M10S Hardware GNSS Diagnostic
-══════════════════════════════════════════════════════════════════════
-
-  Starting MAX-M10S GNSS serial reader → /dev/serial0 @ 9600 baud
-[GNSS] Initializing receiver...
-[GNSS] Checking communication at 115200 baud...
-[GNSS] No response at 115200 baud.
-[GNSS] Checking communication at 9600 baud...
-[GNSS] Receiver detected at 9600 baud.
-[GNSS] Configuring UART1 to 115200 baud...
-[GNSS] Verifying new baud rate...
-[GNSS] Receiver failed verification at 115200 baud on /dev/serial0.
-  Waiting up to 30 s for MAX-M10S GNSS data …
-
-  \  Status: NO_DATA     sats= 0  sats_in_view= 0  [26s left]   [GNSS] Receiver detected at 9600 baud.
-[GNSS] Configuring UART1 to 115200 baud...
-[GNSS] Verifying new baud rate...
-  |  Status: NO_DATA     sats= 0  sats_in_view= 0  [25s left]   [GNSS] Receiver failed verification at 115200 baud on /dev/serial0.
-  |  Status: NO_DATA     sats= 0  sats_in_view= 0  [21s left]   [GNSS] Receiver detected at 9600 baud.
-[GNSS] Configuring UART1 to 115200 baud...
-[GNSS] Verifying new baud rate...
-  /  Status: NO_DATA     sats= 0  sats_in_view= 0  [20s left]   [GNSS] Receiver failed verification at 115200 baud on /dev/serial0.
-  /  Status: NO_DATA     sats= 0  sats_in_view= 0  [16s left]   [GNSS] Receiver detected at 9600 baud.
-[GNSS] Configuring UART1 to 115200 baud...
-[GNSS] Verifying new baud rate...
-  ─  Status: NO_DATA     sats= 0  sats_in_view= 0  [15s left]   [GNSS] Receiver failed verification at 115200 baud on /dev/serial0.
-  ─  Status: NO_DATA     sats= 0  sats_in_view= 0  [11s left]   [GNSS] Receiver detected at 9600 baud.
-[GNSS] Configuring UART1 to 115200 baud...
-[GNSS] Verifying new baud rate...
-  \  Status: NO_DATA     sats= 0  sats_in_view= 0  [10s left]   [GNSS] Receiver failed verification at 115200 baud on /dev/serial0.
-  \  Status: NO_DATA     sats= 0  sats_in_view= 0  [ 6s left]   [GNSS] Receiver detected at 9600 baud.
-[GNSS] Configuring UART1 to 115200 baud...
-[GNSS] Verifying new baud rate...
-  |  Status: NO_DATA     sats= 0  sats_in_view= 0  [ 5s left]   [GNSS] Receiver failed verification at 115200 baud on /dev/serial0.
-  |  Status: NO_DATA     sats= 0  sats_in_view= 0  [ 1s left]   [GNSS] Receiver detected at 9600 baud.
-[GNSS] Configuring UART1 to 115200 baud...
-[GNSS] Verifying new baud rate...
-  /  Status: NO_DATA     sats= 0  sats_in_view= 0  [ 0s left]   [GNSS] Receiver failed verification at 115200 baud on /dev/serial0.
-
-
-  ✘  No GNSS data received (status=NO_DATA). Check MAX-M10S UART wiring (TX->RXD Pin 10, RX->TXD Pin 8), power (3.3V/5V), and enable_uart=1 in /boot/firmware/config.txt.
-
-  ▶ u-blox MAX-M10S GNSS read() snapshot
-    primary_module              u-blox MAX-M10S
-    active_port                 /dev/serial0
-    active_baud                 115200
-    data_received               False
-    fix                         False
-    status                      NO_DATA
-    latitude                    None °
-    longitude                   None °
-    altitude_m                  None m
-    speed_kmh                   None km/h
-    course_deg                  None °
-    satellites (in fix)         0
-    satellites_in_view          0
-    satellite_records           0
-    hdop                        None
-    gnss_ok flag                False
-  ⚠  No satellite detail available (GSV not yet received or snapshot expired)
-──────────────────────────────────────────────────────────────────────
-══════════════════════════════════════════════════════════════════════
-  PiCamera — Sony IMX708 (Camera Module 3)
-══════════════════════════════════════════════════════════════════════
-
-  Checking Picamera2 library…
-  ✔  picamera2 package is installed and importable
-
-  ▶ Sensor hardware detection
-[0:47:56.726463849] [6998]  INFO Camera camera_manager.cpp:340 libcamera v0.7.2+rpt20260817
-[0:47:56.750675691] [7069]  WARN CameraSensorProperties camera_sensor_properties.cpp:612 No static properties available for 'imx708_wide_noir'
-[0:47:56.750748506] [7069]  WARN CameraSensorProperties camera_sensor_properties.cpp:614 Please consider updating the camera sensor properties database
-[0:47:56.829117256] [7069]  INFO RPI pipeline_base.cpp:1133 Using configuration file '/usr/share/libcamera/pipeline/rpi/vc4/rpi_apps.yaml'
-[0:47:56.862762050] [7069]  INFO IPAProxy ipa_proxy.cpp:184 Using tuning file /usr/share/libcamera/ipa/rpi/vc4/imx708_wide_noir.json
-[0:47:56.868637961] [7069]  WARN CameraSensor camera_sensor_legacy.cpp:502 'imx708_wide_noir': No sensor delays found in static properties. Assuming unverified defaults.
-[0:47:56.869262184] [7069]  INFO Camera camera_manager.cpp:223 Adding camera '/base/soc/i2c0mux/i2c@1/imx708@1a' for pipeline handler rpi/vc4
-[0:47:56.869290743] [7069]  INFO RPI vc4.cpp:445 Registered camera /base/soc/i2c0mux/i2c@1/imx708@1a to Unicam device /dev/media0 and ISP device /dev/media1
-  ✔  IMX708 hardware confirmed: Sony IMX708 [Camera Module 3 (Wide FOV) (NoIR)]
-    Detected                    True
-    Model                       Sony IMX708 [Camera Module 3 (Wide FOV) (NoIR)]
-    Backend                     picamera2
-    Details                     Picamera2 ID: /base/soc/i2c0mux/i2c@1/imx708@1a, Model: imx708_wide_noir
-
-  ▶ Camera initialisation (640x480 @ 30.0 FPS, AF: CONTINUOUS)
-[IMX708] Libcamera native auto-detection active (standard rpicam-hello behavior).
-[0:47:56.877600132] [6998]  INFO Camera camera.cpp:1216 configuring streams: (0) 640x480-BGR888/SMPTE170M/Rec709/None/Full (1) 4608x2592-SBGGR10_CSI2P/RAW
-[0:47:56.878166643] [7069]  INFO RPI vc4.cpp:620 Sensor: /base/soc/i2c0mux/i2c@1/imx708@1a - Selected sensor format: 4608x2592-SBGGR10_1X10/RAW - Selected unicam format: 4608x2592-pBAA/RAW
-[IMX708] Dynamic AWB mode updated to: AUTO (runtime ISP update, no camera restart)
-[IMX708] Initialized successfully (640x480 @ 30.0 fps, PDAF: continuous, AWB: Auto, RB swap: True)
-  ⚠  camera.IMX708CameraCapture not used ('IMX708CameraCapture' object has no attribute 'is_opened'). Falling back to direct Picamera2.
-[0:47:57.971621851] [6998] ERROR Camera camera.cpp:702 Camera in Running state trying acquire() requiring state Available
-Camera __init__ sequence did not complete.
-  ✘  Camera initialisation failed: Camera __init__ sequence did not complete.
-──────────────────────────────────────────────────────────────────────
-══════════════════════════════════════════════════════════════════════
-  LTE — Cellular / Modem Connectivity
-══════════════════════════════════════════════════════════════════════
-
-  ▶ Network interfaces
-      lo                          UNKNOWN
-      eth0                        DOWN
-      wlan0                       UP
-      usb0                        UNKNOWN
-  ⚠  LTE interface usb0 is UNKNOWN
-
-  ▶ Default route
-  ✔  Default route present
-    Default route               default via 192.168.1.1 dev usb0 proto dhcp src 192.168.1.6 metric 100
-    Gateway                     192.168.1.1
-
-  ▶ Internet reachability (DNS & HTTP probe)
-  ✔  DNS resolution working (dns.google resolved)
-  ✔  HTTP probe succeeded (HTTP 204, 185 ms)
-    DNS OK                      True
-    HTTP OK                     True
-    HTTP status                 204
-    HTTP latency                185 ms
-
-  ▶ Modem / SIM status (ModemManager mmcli)
-  ⚠  mmcli not found (install via: sudo apt install -y modemmanager)
-    mmcli available             False
-    Modem state                 N/A
-    SIM / Reg state             N/A
-    Operator                    N/A
-    Access tech                 N/A
-    Signal quality              N/A
-
-  ▶ Cellular modem hardware scan (serial / USB / sysfs)
-  ✔  Cellular serial devices present: /dev/ttyUSB6, /dev/ttyUSB5, /dev/ttyUSB4, /dev/ttyUSB3, /dev/ttyUSB2, /dev/ttyUSB1, /dev/ttyUSB0
-    Modem serial ports          /dev/ttyUSB6, /dev/ttyUSB5, /dev/ttyUSB4, /dev/ttyUSB3, /dev/ttyUSB2, /dev/ttyUSB1, /dev/ttyUSB0
-    Modem USB chip              Quectel
-
-  ▶ LTE status LED hardware test
-    LED GPIO Pin                BCM 10 (Physical 19)
-  ✔  LTE LED pin configured in config.py
-
-  ✔  LTE / connectivity test PASSED — internet is reachable
-──────────────────────────────────────────────────────────────────────
-══════════════════════════════════════════════════════════════════════
-  SUMMARY
-══════════════════════════════════════════════════════════════════════
-
-  ✔  RTC    -- PASSED
-  ✔  IMU    -- PASSED
-  ✘  GNSS   -- FAILED / not detected
-  ✘  PiCam  -- FAILED / not detected
-  ✔  LTE    -- PASSED
-
-======================================================================
-
-(venv) solid-waste@raspberrypi:~/MotionFull/swstp_edge $ python tests/test_max_m10s_gnss.py 
-[*] Auto-detected GNSS port: /dev/serial0
-[*] Opening serial connection on /dev/serial0 @ 9600 baud...
-[*] Listening for NMEA sentences from u-blox MAX-M10S... (Press Ctrl+C to stop)
-
-+==============================================================================+
-|                  u-blox MAX-M10S GNSS LIVE DASHBOARD                         |
-+==============================================================================+
- Port: /dev/serial0 (9600 baud) | Rate: 20.4 Hz | Status: 3D FIX (Solid)
---------------------------------------------------------------------------------
->> POSITION & COORDINATES:
-   Latitude  : 20.9560107°  (20° 57' 21.64" N)
-   Longitude : 77.7634747°  (77° 45' 48.51" E)
-   Altitude  : 334.9 m (1098.8 ft)
---------------------------------------------------------------------------------
->> MOTION & DYNAMICS:
-   Speed     : 4.7 km/h  (2.6 knots)
-   Heading   : 341.9° [NNW]
---------------------------------------------------------------------------------
->> SATELLITES & ACCURACY (DOP):
-   Satellites: 8 used in fix / 8 in view
-   Precision : HDOP=1.63 (EXCELLENT) | VDOP=1.58 | PDOP=2.27
-   PRNs Used : None
-   Signals   : GPS#01:00dB[-----] | GPS#02:00dB[-----] | GPS#04:00dB[-----] | GPS#16:00dB[-----] | GPS#21:00dB[-----] | GPS#27:00dB[-----]
---------------------------------------------------------------------------------
->> TIME & PRECISION METRICS:
-   Local Time: 12:29:15 IST | UTC: 06:59:15 | Date: 2026-11-20
-   Drift Std : 1.62 m (Max spread: 3.12 m across 27 samples)
-   Sentences : Total=137 | Checksum OK=137 | Errors=0
-+==============================================================================+
- Press Ctrl+C to exit.
-^C
-=================================================================
-            u-blox MAX-M10S GNSS TEST SUMMARY REPORT
-=================================================================
- Port Tested             : /dev/serial0 @ 9600 baud
- Total Sentences Read    : 137
- Checksum Valid          : 137
- Checksum Errors         : 0
- Last Position Fix       : 20.9560107°, 77.7634747°
- Last Altitude           : 334.9 m
- Satellites Used/In View : 8 / 8
- Final HDOP              : 1.63
- Stationary Drift StdDev : 1.62 meters
-=================================================================
-
-(venv) solid-waste@raspberrypi:~/MotionFull/swstp_edge $ ^C
-(venv) solid-waste@raspberrypi:~/MotionFull/swstp_edge $ 
-
-
+seq,target,tx_utc,tx_epoch_ms,latitude,longitude,fix,satellites,hdop,gnss_status,payload_timestamp,payload_utc,payload_epoch_ms,backend_session_id,result,http_status,latency_ms,error
+1,primary,2026-11-23T10:11:38.124+00:00,1795428698124,,,False,0,,NO_FIX,2026-11-23T15:41:38,2026-11-23T10:11:38.121650+00:00,1795428698122,30105,HTTP_ERROR,404,635.2,
+1,secondary,2026-11-23T10:11:38.125+00:00,1795428698125,,,False,0,,NO_FIX,2026-11-23T15:41:38,2026-11-23T10:11:38.121650+00:00,1795428698122,,HTTP_ERROR,400,687.1,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+2,primary,2026-11-23T10:11:38.809+00:00,1795428698809,,,False,0,,NO_FIX,2026-11-23T15:41:38,2026-11-23T10:11:38.809635+00:00,1795428698809,30105,HTTP_ERROR,404,189.6,
+2,secondary,2026-11-23T10:11:38.813+00:00,1795428698813,,,False,0,,NO_FIX,2026-11-23T15:41:38,2026-11-23T10:11:38.809635+00:00,1795428698809,,HTTP_ERROR,400,195.6,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+3,primary,2026-11-23T10:11:39.010+00:00,1795428699010,,,False,0,,NO_FIX,2026-11-23T15:41:39,2026-11-23T10:11:39.009919+00:00,1795428699010,30105,HTTP_ERROR,404,153.1,
+3,secondary,2026-11-23T10:11:39.010+00:00,1795428699010,,,False,0,,NO_FIX,2026-11-23T15:41:39,2026-11-23T10:11:39.009919+00:00,1795428699010,,HTTP_ERROR,400,170.2,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+4,primary,2026-11-23T10:11:39.210+00:00,1795428699210,,,False,0,,NO_FIX,2026-11-23T15:41:39,2026-11-23T10:11:39.210373+00:00,1795428699210,30105,HTTP_ERROR,404,139.6,
+4,secondary,2026-11-23T10:11:39.212+00:00,1795428699212,,,False,0,,NO_FIX,2026-11-23T15:41:39,2026-11-23T10:11:39.210373+00:00,1795428699210,,HTTP_ERROR,400,177.1,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+5,primary,2026-11-23T10:11:39.410+00:00,1795428699410,,,False,0,,NO_FIX,2026-11-23T15:41:39,2026-11-23T10:11:39.410570+00:00,1795428699410,30105,HTTP_ERROR,404,148.8,
+5,secondary,2026-11-23T10:11:39.410+00:00,1795428699410,,,False,0,,NO_FIX,2026-11-23T15:41:39,2026-11-23T10:11:39.410570+00:00,1795428699410,,HTTP_ERROR,400,177.9,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+6,primary,2026-11-23T10:11:39.610+00:00,1795428699610,,,False,0,,NO_FIX,2026-11-23T15:41:39,2026-11-23T10:11:39.610689+00:00,1795428699610,30105,HTTP_ERROR,404,180.4,
+6,secondary,2026-11-23T10:11:39.611+00:00,1795428699611,,,False,0,,NO_FIX,2026-11-23T15:41:39,2026-11-23T10:11:39.610689+00:00,1795428699610,,HTTP_ERROR,400,209.9,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+7,primary,2026-11-23T10:11:39.811+00:00,1795428699811,,,False,0,,NO_FIX,2026-11-23T15:41:39,2026-11-23T10:11:39.810906+00:00,1795428699811,30105,HTTP_ERROR,404,145.1,
+7,secondary,2026-11-23T10:11:39.821+00:00,1795428699821,,,False,0,,NO_FIX,2026-11-23T15:41:39,2026-11-23T10:11:39.810906+00:00,1795428699811,,HTTP_ERROR,400,158.5,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+8,primary,2026-11-23T10:11:40.011+00:00,1795428700011,,,False,0,,NO_FIX,2026-11-23T15:41:40,2026-11-23T10:11:40.011009+00:00,1795428700011,30105,HTTP_ERROR,404,161.9,
+8,secondary,2026-11-23T10:11:40.011+00:00,1795428700011,,,False,0,,NO_FIX,2026-11-23T15:41:40,2026-11-23T10:11:40.011009+00:00,1795428700011,,HTTP_ERROR,400,163.4,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+9,primary,2026-11-23T10:11:40.211+00:00,1795428700211,,,False,0,,NO_FIX,2026-11-23T15:41:40,2026-11-23T10:11:40.211165+00:00,1795428700211,30105,HTTP_ERROR,404,139.4,
+10,primary,2026-11-23T10:11:40.411+00:00,1795428700411,,,False,0,,NO_FIX,2026-11-23T15:41:40,2026-11-23T10:11:40.411298+00:00,1795428700411,30105,HTTP_ERROR,404,153.9,
+11,primary,2026-11-23T10:11:40.611+00:00,1795428700611,,,False,0,,NO_FIX,2026-11-23T15:41:40,2026-11-23T10:11:40.611725+00:00,1795428700611,30105,HTTP_ERROR,404,264.7,
+12,primary,2026-11-23T10:11:40.894+00:00,1795428700894,,,False,0,,NO_FIX,2026-11-23T15:41:40,2026-11-23T10:11:40.893767+00:00,1795428700894,30105,HTTP_ERROR,404,354.8,
+13,primary,2026-11-23T10:11:41.260+00:00,1795428701260,,,False,0,,NO_FIX,2026-11-23T15:41:41,2026-11-23T10:11:41.260070+00:00,1795428701260,30105,HTTP_ERROR,404,281.3,
+14,primary,2026-11-23T10:11:41.552+00:00,1795428701552,,,False,0,,NO_FIX,2026-11-23T15:41:41,2026-11-23T10:11:41.552442+00:00,1795428701552,30105,HTTP_ERROR,404,779.7,
+15,primary,2026-11-23T10:11:42.342+00:00,1795428702342,,,False,0,,NO_FIX,2026-11-23T15:41:42,2026-11-23T10:11:42.342791+00:00,1795428702342,30105,HTTP_ERROR,404,309.6,
+9,secondary,2026-11-23T10:11:42.385+00:00,1795428702385,,,False,0,,NO_FIX,2026-11-23T15:41:40,2026-11-23T10:11:40.211165+00:00,1795428700211,,HTTP_ERROR,400,321.2,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+16,primary,2026-11-23T10:11:42.663+00:00,1795428702663,,,False,0,,NO_FIX,2026-11-23T15:41:42,2026-11-23T10:11:42.662921+00:00,1795428702663,30105,HTTP_ERROR,404,687.4,
+10,secondary,2026-11-23T10:11:42.706+00:00,1795428702706,,,False,0,,NO_FIX,2026-11-23T15:41:40,2026-11-23T10:11:40.411298+00:00,1795428700411,,HTTP_ERROR,400,673.5,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+17,primary,2026-11-23T10:11:43.525+00:00,1795428703525,,,False,0,,NO_FIX,2026-11-23T15:41:43,2026-11-23T10:11:43.525176+00:00,1795428703525,30105,HTTP_ERROR,404,727.1,
+11,secondary,2026-11-23T10:11:43.515+00:00,1795428703515,,,False,0,,NO_FIX,2026-11-23T15:41:40,2026-11-23T10:11:40.611725+00:00,1795428700611,,HTTP_ERROR,400,763.2,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+18,primary,2026-11-23T10:11:44.263+00:00,1795428704263,,,False,0,,NO_FIX,2026-11-23T15:41:44,2026-11-23T10:11:44.263042+00:00,1795428704263,30105,HTTP_ERROR,404,703.5,
+12,secondary,2026-11-23T10:11:44.279+00:00,1795428704279,,,False,0,,NO_FIX,2026-11-23T15:41:40,2026-11-23T10:11:40.893767+00:00,1795428700894,,HTTP_ERROR,400,806.3,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+19,primary,2026-11-23T10:11:44.977+00:00,1795428704977,,,False,0,,NO_FIX,2026-11-23T15:41:44,2026-11-23T10:11:44.977189+00:00,1795428704977,30105,HTTP_ERROR,404,225.4,
+20,primary,2026-11-23T10:11:45.213+00:00,1795428705213,,,False,0,,NO_FIX,2026-11-23T15:41:45,2026-11-23T10:11:45.213051+00:00,1795428705213,30105,HTTP_ERROR,404,544.2,
+13,secondary,2026-11-23T10:11:45.950+00:00,1795428705950,,,False,0,,NO_FIX,2026-11-23T15:41:41,2026-11-23T10:11:41.260070+00:00,1795428701260,,HTTP_ERROR,400,376.6,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+14,secondary,2026-11-23T10:11:46.352+00:00,1795428706352,,,False,0,,NO_FIX,2026-11-23T15:41:41,2026-11-23T10:11:41.552442+00:00,1795428701552,,HTTP_ERROR,400,588.4,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+21,primary,2026-11-23T10:11:46.361+00:00,1795428706361,,,False,0,,NO_FIX,2026-11-23T15:41:46,2026-11-23T10:11:46.361829+00:00,1795428706361,30105,HTTP_ERROR,404,581.5,
+22,primary,2026-11-23T10:11:46.956+00:00,1795428706956,,,False,0,,NO_FIX,2026-11-23T15:41:46,2026-11-23T10:11:46.956575+00:00,1795428706956,30105,HTTP_ERROR,404,518.9,
+15,secondary,2026-11-23T10:11:47.144+00:00,1795428707144,,,False,0,,NO_FIX,2026-11-23T15:41:42,2026-11-23T10:11:42.342791+00:00,1795428702342,,HTTP_ERROR,400,436.5,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+23,primary,2026-11-23T10:11:47.486+00:00,1795428707486,,,False,0,,NO_FIX,2026-11-23T15:41:47,2026-11-23T10:11:47.486029+00:00,1795428707486,30105,HTTP_ERROR,404,205.1,
+24,primary,2026-11-23T10:11:47.702+00:00,1795428707702,,,False,0,,NO_FIX,2026-11-23T15:41:47,2026-11-23T10:11:47.702711+00:00,1795428707702,30105,HTTP_ERROR,404,142.5,
+16,secondary,2026-11-23T10:11:47.819+00:00,1795428707819,,,False,0,,NO_FIX,2026-11-23T15:41:42,2026-11-23T10:11:42.662921+00:00,1795428702663,,HTTP_ERROR,400,327.0,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+25,primary,2026-11-23T10:11:47.977+00:00,1795428707977,,,False,0,,NO_FIX,2026-11-23T15:41:47,2026-11-23T10:11:47.976827+00:00,1795428707977,30105,HTTP_ERROR,404,361.5,
+17,secondary,2026-11-23T10:11:48.146+00:00,1795428708146,,,False,0,,NO_FIX,2026-11-23T15:41:43,2026-11-23T10:11:43.525176+00:00,1795428703525,,HTTP_ERROR,400,201.8,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+26,primary,2026-11-23T10:11:48.349+00:00,1795428708349,,,False,0,,NO_FIX,2026-11-23T15:41:48,2026-11-23T10:11:48.349069+00:00,1795428708349,30105,HTTP_ERROR,404,139.4,
+27,primary,2026-11-23T10:11:48.549+00:00,1795428708549,,,False,0,,NO_FIX,2026-11-23T15:41:48,2026-11-23T10:11:48.549204+00:00,1795428708549,30105,HTTP_ERROR,404,482.7,
+18,secondary,2026-11-23T10:11:48.579+00:00,1795428708579,,,False,0,,NO_FIX,2026-11-23T15:41:44,2026-11-23T10:11:44.263042+00:00,1795428704263,,HTTP_ERROR,400,478.3,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+28,primary,2026-11-23T10:11:49.042+00:00,1795428709042,,,False,0,,NO_FIX,2026-11-23T15:41:49,2026-11-23T10:11:49.042402+00:00,1795428709042,30105,HTTP_ERROR,404,146.3,
+29,primary,2026-11-23T10:11:49.243+00:00,1795428709243,,,False,0,,NO_FIX,2026-11-23T15:41:49,2026-11-23T10:11:49.243203+00:00,1795428709243,30105,HTTP_ERROR,404,379.5,
+19,secondary,2026-11-23T10:11:49.288+00:00,1795428709288,,,False,0,,NO_FIX,2026-11-23T15:41:44,2026-11-23T10:11:44.977189+00:00,1795428704977,,HTTP_ERROR,400,418.9,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+30,primary,2026-11-23T10:11:49.633+00:00,1795428709633,,,False,0,,NO_FIX,2026-11-23T15:41:49,2026-11-23T10:11:49.633250+00:00,1795428709633,30105,HTTP_ERROR,404,143.6,
+20,secondary,2026-11-23T10:11:49.707+00:00,1795428709707,,,False,0,,NO_FIX,2026-11-23T15:41:45,2026-11-23T10:11:45.213051+00:00,1795428705213,,HTTP_ERROR,400,160.4,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+31,primary,2026-11-23T10:11:49.833+00:00,1795428709833,,,False,0,,NO_FIX,2026-11-23T15:41:49,2026-11-23T10:11:49.833430+00:00,1795428709833,30105,HTTP_ERROR,404,318.2,
+32,primary,2026-11-23T10:11:50.162+00:00,1795428710162,,,False,0,,NO_FIX,2026-11-23T15:41:50,2026-11-23T10:11:50.162390+00:00,1795428710162,30105,HTTP_ERROR,404,258.6,
+33,primary,2026-11-23T10:11:50.435+00:00,1795428710435,,,False,0,,NO_FIX,2026-11-23T15:41:50,2026-11-23T10:11:50.435106+00:00,1795428710435,30105,HTTP_ERROR,404,176.3,
+21,secondary,2026-11-23T10:11:50.576+00:00,1795428710576,,,False,0,,NO_FIX,2026-11-23T15:41:46,2026-11-23T10:11:46.361829+00:00,1795428706361,,HTTP_ERROR,400,317.9,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+34,primary,2026-11-23T10:11:50.635+00:00,1795428710635,,,False,0,,NO_FIX,2026-11-23T15:41:50,2026-11-23T10:11:50.635289+00:00,1795428710635,30105,HTTP_ERROR,404,309.9,
+22,secondary,2026-11-23T10:11:50.894+00:00,1795428710894,,,False,0,,NO_FIX,2026-11-23T15:41:46,2026-11-23T10:11:46.956575+00:00,1795428706956,,HTTP_ERROR,400,181.9,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+35,primary,2026-11-23T10:11:50.956+00:00,1795428710956,,,False,0,,NO_FIX,2026-11-23T15:41:50,2026-11-23T10:11:50.956035+00:00,1795428710956,30105,HTTP_ERROR,404,140.3,
+36,primary,2026-11-23T10:11:51.156+00:00,1795428711156,,,False,0,,NO_FIX,2026-11-23T15:41:51,2026-11-23T10:11:51.156171+00:00,1795428711156,30105,HTTP_ERROR,404,149.7,
+37,primary,2026-11-23T10:11:51.356+00:00,1795428711356,,,False,0,,NO_FIX,2026-11-23T15:41:51,2026-11-23T10:11:51.356298+00:00,1795428711356,30105,HTTP_ERROR,404,291.2,
+23,secondary,2026-11-23T10:11:51.312+00:00,1795428711312,,,False,0,,NO_FIX,2026-11-23T15:41:47,2026-11-23T10:11:47.486029+00:00,1795428707486,,HTTP_ERROR,400,347.7,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+38,primary,2026-11-23T10:11:51.659+00:00,1795428711659,,,False,0,,NO_FIX,2026-11-23T15:41:51,2026-11-23T10:11:51.659240+00:00,1795428711659,30105,HTTP_ERROR,404,185.3,
+24,secondary,2026-11-23T10:11:51.663+00:00,1795428711663,,,False,0,,NO_FIX,2026-11-23T15:41:47,2026-11-23T10:11:47.702711+00:00,1795428707702,,HTTP_ERROR,400,217.9,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+39,primary,2026-11-23T10:11:51.862+00:00,1795428711862,,,False,0,,NO_FIX,2026-11-23T15:41:51,2026-11-23T10:11:51.862251+00:00,1795428711862,30105,HTTP_ERROR,404,144.4,
+40,primary,2026-11-23T10:11:52.062+00:00,1795428712062,,,False,0,,NO_FIX,2026-11-23T15:41:52,2026-11-23T10:11:52.062397+00:00,1795428712062,30105,HTTP_ERROR,404,280.6,
+25,secondary,2026-11-23T10:11:52.351+00:00,1795428712351,,,False,0,,NO_FIX,2026-11-23T15:41:47,2026-11-23T10:11:47.976827+00:00,1795428707977,,HTTP_ERROR,400,215.2,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+41,primary,2026-11-23T10:11:52.354+00:00,1795428712354,,,False,0,,NO_FIX,2026-11-23T15:41:52,2026-11-23T10:11:52.354055+00:00,1795428712354,30105,HTTP_ERROR,404,212.6,
+42,primary,2026-11-23T10:11:52.580+00:00,1795428712580,,,False,0,,NO_FIX,2026-11-23T15:41:52,2026-11-23T10:11:52.579893+00:00,1795428712580,30105,HTTP_ERROR,404,365.5,
+26,secondary,2026-11-23T10:11:52.567+00:00,1795428712567,,,False,0,,NO_FIX,2026-11-23T15:41:48,2026-11-23T10:11:48.349069+00:00,1795428708349,,HTTP_ERROR,400,390.2,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+43,primary,2026-11-23T10:11:52.956+00:00,1795428712956,,,False,0,,NO_FIX,2026-11-23T15:41:52,2026-11-23T10:11:52.956640+00:00,1795428712956,30105,HTTP_ERROR,404,171.0,
+44,primary,2026-11-23T10:11:53.157+00:00,1795428713157,,,False,0,,NO_FIX,2026-11-23T15:41:53,2026-11-23T10:11:53.157650+00:00,1795428713157,30105,HTTP_ERROR,404,376.7,
+27,secondary,2026-11-23T10:11:53.187+00:00,1795428713187,,,False,0,,NO_FIX,2026-11-23T15:41:48,2026-11-23T10:11:48.549204+00:00,1795428708549,,HTTP_ERROR,400,366.9,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+45,primary,2026-11-23T10:11:53.545+00:00,1795428713545,,,False,0,,NO_FIX,2026-11-23T15:41:53,2026-11-23T10:11:53.545556+00:00,1795428713545,30105,HTTP_ERROR,404,187.5,
+28,secondary,2026-11-23T10:11:53.555+00:00,1795428713555,,,False,0,,NO_FIX,2026-11-23T15:41:49,2026-11-23T10:11:49.042402+00:00,1795428709042,,HTTP_ERROR,400,201.0,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+46,primary,2026-11-23T10:11:53.745+00:00,1795428713745,,,False,0,,NO_FIX,2026-11-23T15:41:53,2026-11-23T10:11:53.745697+00:00,1795428713745,30105,HTTP_ERROR,404,149.8,
+29,secondary,2026-11-23T10:11:53.980+00:00,1795428713980,,,False,0,,NO_FIX,2026-11-23T15:41:49,2026-11-23T10:11:49.243203+00:00,1795428709243,,HTTP_ERROR,400,270.5,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+47,primary,2026-11-23T10:11:54.282+00:00,1795428714282,,,False,0,,NO_FIX,2026-11-23T15:41:54,2026-11-23T10:11:54.282358+00:00,1795428714282,30105,HTTP_ERROR,404,140.9,
+30,secondary,2026-11-23T10:11:54.272+00:00,1795428714272,,,False,0,,NO_FIX,2026-11-23T15:41:49,2026-11-23T10:11:49.633250+00:00,1795428709633,,HTTP_ERROR,400,159.5,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+31,secondary,2026-11-23T10:11:54.432+00:00,1795428714432,,,False,0,,NO_FIX,2026-11-23T15:41:49,2026-11-23T10:11:49.833430+00:00,1795428709833,,HTTP_ERROR,400,158.8,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+48,primary,2026-11-23T10:11:54.482+00:00,1795428714482,,,False,0,,NO_FIX,2026-11-23T15:41:54,2026-11-23T10:11:54.482486+00:00,1795428714482,30105,HTTP_ERROR,404,378.9,
+49,primary,2026-11-23T10:11:54.872+00:00,1795428714872,,,False,0,,NO_FIX,2026-11-23T15:41:54,2026-11-23T10:11:54.872222+00:00,1795428714872,30105,HTTP_ERROR,404,199.8,
+32,secondary,2026-11-23T10:11:54.927+00:00,1795428714927,,,False,0,,NO_FIX,2026-11-23T15:41:50,2026-11-23T10:11:50.162390+00:00,1795428710162,,HTTP_ERROR,400,170.0,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+50,primary,2026-11-23T10:11:55.083+00:00,1795428715083,,,False,0,,NO_FIX,2026-11-23T15:41:55,2026-11-23T10:11:55.082825+00:00,1795428715083,30105,HTTP_ERROR,404,139.2,
+51,primary,2026-11-23T10:11:55.286+00:00,1795428715286,,,False,0,,NO_FIX,2026-11-23T15:41:55,2026-11-23T10:11:55.286180+00:00,1795428715286,30105,HTTP_ERROR,404,240.2,
+33,secondary,2026-11-23T10:11:55.291+00:00,1795428715291,,,False,0,,NO_FIX,2026-11-23T15:41:50,2026-11-23T10:11:50.435106+00:00,1795428710435,,HTTP_ERROR,400,262.5,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+52,primary,2026-11-23T10:11:55.537+00:00,1795428715537,,,False,0,,NO_FIX,2026-11-23T15:41:55,2026-11-23T10:11:55.537210+00:00,1795428715537,30105,HTTP_ERROR,404,177.1,
+34,secondary,2026-11-23T10:11:55.557+00:00,1795428715557,,,False,0,,NO_FIX,2026-11-23T15:41:50,2026-11-23T10:11:50.635289+00:00,1795428710635,,HTTP_ERROR,400,187.4,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+53,primary,2026-11-23T10:11:55.737+00:00,1795428715737,,,False,0,,NO_FIX,2026-11-23T15:41:55,2026-11-23T10:11:55.737408+00:00,1795428715737,30105,HTTP_ERROR,404,141.8,
+54,primary,2026-11-23T10:11:55.937+00:00,1795428715937,,,False,0,,NO_FIX,2026-11-23T15:41:55,2026-11-23T10:11:55.937495+00:00,1795428715937,30105,HTTP_ERROR,404,224.3,
+35,secondary,2026-11-23T10:11:55.967+00:00,1795428715967,,,False,0,,NO_FIX,2026-11-23T15:41:50,2026-11-23T10:11:50.956035+00:00,1795428710956,,HTTP_ERROR,400,217.9,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+36,secondary,2026-11-23T10:11:56.621+00:00,1795428716621,,,False,0,,NO_FIX,2026-11-23T15:41:51,2026-11-23T10:11:51.156171+00:00,1795428711156,,HTTP_ERROR,400,186.7,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+55,primary,2026-11-23T10:11:56.631+00:00,1795428716631,,,False,0,,NO_FIX,2026-11-23T15:41:56,2026-11-23T10:11:56.630811+00:00,1795428716630,30105,HTTP_ERROR,404,200.2,
+56,primary,2026-11-23T10:11:56.842+00:00,1795428716842,,,False,0,,NO_FIX,2026-11-23T15:41:56,2026-11-23T10:11:56.841762+00:00,1795428716841,30105,HTTP_ERROR,404,207.6,
+37,secondary,2026-11-23T10:11:57.041+00:00,1795428717041,,,False,0,,NO_FIX,2026-11-23T15:41:51,2026-11-23T10:11:51.356298+00:00,1795428711356,,HTTP_ERROR,400,162.0,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+57,primary,2026-11-23T10:11:57.060+00:00,1795428717060,,,False,0,,NO_FIX,2026-11-23T15:41:57,2026-11-23T10:11:57.060163+00:00,1795428717060,30105,HTTP_ERROR,404,143.1,
+38,secondary,2026-11-23T10:11:57.203+00:00,1795428717203,,,False,0,,NO_FIX,2026-11-23T15:41:51,2026-11-23T10:11:51.659240+00:00,1795428711659,,HTTP_ERROR,400,198.9,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+58,primary,2026-11-23T10:11:57.260+00:00,1795428717260,,,False,0,,NO_FIX,2026-11-23T15:41:57,2026-11-23T10:11:57.260328+00:00,1795428717260,30105,HTTP_ERROR,404,191.8,
+59,primary,2026-11-23T10:11:57.463+00:00,1795428717463,,,False,0,,NO_FIX,2026-11-23T15:41:57,2026-11-23T10:11:57.462879+00:00,1795428717463,30105,HTTP_ERROR,404,236.7,
+39,secondary,2026-11-23T10:11:57.694+00:00,1795428717694,,,False,0,,NO_FIX,2026-11-23T15:41:51,2026-11-23T10:11:51.862251+00:00,1795428711862,,HTTP_ERROR,400,157.0,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+60,primary,2026-11-23T10:11:57.712+00:00,1795428717712,,,False,0,,NO_FIX,2026-11-23T15:41:57,2026-11-23T10:11:57.712070+00:00,1795428717712,30105,HTTP_ERROR,404,146.1,
+40,secondary,2026-11-23T10:11:57.852+00:00,1795428717852,,,False,0,,NO_FIX,2026-11-23T15:41:52,2026-11-23T10:11:52.062397+00:00,1795428712062,,HTTP_ERROR,400,246.6,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+61,primary,2026-11-23T10:11:57.912+00:00,1795428717912,,,False,0,,NO_FIX,2026-11-23T15:41:57,2026-11-23T10:11:57.912193+00:00,1795428717912,30105,HTTP_ERROR,404,220.9,
+62,primary,2026-11-23T10:11:58.144+00:00,1795428718144,,,False,0,,NO_FIX,2026-11-23T15:41:58,2026-11-23T10:11:58.143959+00:00,1795428718144,30105,HTTP_ERROR,404,216.0,
+41,secondary,2026-11-23T10:11:58.355+00:00,1795428718355,,,False,0,,NO_FIX,2026-11-23T15:41:52,2026-11-23T10:11:52.354055+00:00,1795428712354,,HTTP_ERROR,400,154.8,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+63,primary,2026-11-23T10:11:58.376+00:00,1795428718376,,,False,0,,NO_FIX,2026-11-23T15:41:58,2026-11-23T10:11:58.376359+00:00,1795428718376,30105,HTTP_ERROR,404,139.1,
+42,secondary,2026-11-23T10:11:58.511+00:00,1795428718511,,,False,0,,NO_FIX,2026-11-23T15:41:52,2026-11-23T10:11:52.579893+00:00,1795428712580,,HTTP_ERROR,400,225.0,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+64,primary,2026-11-23T10:11:58.576+00:00,1795428718576,,,False,0,,NO_FIX,2026-11-23T15:41:58,2026-11-23T10:11:58.576513+00:00,1795428718576,30105,HTTP_ERROR,404,213.9,
+65,primary,2026-11-23T10:11:58.801+00:00,1795428718801,,,False,0,,NO_FIX,2026-11-23T15:41:58,2026-11-23T10:11:58.801039+00:00,1795428718801,30105,HTTP_ERROR,404,196.1,
+66,primary,2026-11-23T10:11:59.008+00:00,1795428719008,,,False,0,,NO_FIX,2026-11-23T15:41:59,2026-11-23T10:11:59.007983+00:00,1795428719008,30105,HTTP_ERROR,404,308.3,
+43,secondary,2026-11-23T10:11:59.007+00:00,1795428719007,,,False,0,,NO_FIX,2026-11-23T15:41:52,2026-11-23T10:11:52.956640+00:00,1795428712956,,HTTP_ERROR,400,328.5,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+67,primary,2026-11-23T10:11:59.327+00:00,1795428719327,,,False,0,,NO_FIX,2026-11-23T15:41:59,2026-11-23T10:11:59.326929+00:00,1795428719327,30105,HTTP_ERROR,404,225.9,
+44,secondary,2026-11-23T10:11:59.336+00:00,1795428719336,,,False,0,,NO_FIX,2026-11-23T15:41:53,2026-11-23T10:11:53.157650+00:00,1795428713157,,HTTP_ERROR,400,243.3,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+68,primary,2026-11-23T10:11:59.563+00:00,1795428719563,,,False,0,,NO_FIX,2026-11-23T15:41:59,2026-11-23T10:11:59.563568+00:00,1795428719563,30105,HTTP_ERROR,404,139.6,
+69,primary,2026-11-23T10:11:59.763+00:00,1795428719763,,,False,0,,NO_FIX,2026-11-23T15:41:59,2026-11-23T10:11:59.763693+00:00,1795428719763,30105,HTTP_ERROR,404,233.8,
+45,secondary,2026-11-23T10:11:59.804+00:00,1795428719804,,,False,0,,NO_FIX,2026-11-23T15:41:53,2026-11-23T10:11:53.545556+00:00,1795428713545,,HTTP_ERROR,400,217.6,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+70,primary,2026-11-23T10:12:00.008+00:00,1795428720008,,,False,0,,NO_FIX,2026-11-23T15:42:00,2026-11-23T10:12:00.008252+00:00,1795428720008,30105,HTTP_ERROR,404,221.0,
+46,secondary,2026-11-23T10:12:00.022+00:00,1795428720022,,,False,0,,NO_FIX,2026-11-23T15:41:53,2026-11-23T10:11:53.745697+00:00,1795428713745,,HTTP_ERROR,400,225.2,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+71,primary,2026-11-23T10:12:00.240+00:00,1795428720240,,,False,0,,NO_FIX,2026-11-23T15:42:00,2026-11-23T10:12:00.240695+00:00,1795428720240,30105,HTTP_ERROR,404,140.1,
+72,primary,2026-11-23T10:12:00.441+00:00,1795428720441,,,False,0,,NO_FIX,2026-11-23T15:42:00,2026-11-23T10:12:00.441281+00:00,1795428720441,30105,HTTP_ERROR,404,256.5,
+47,secondary,2026-11-23T10:12:00.438+00:00,1795428720438,,,False,0,,NO_FIX,2026-11-23T15:41:54,2026-11-23T10:11:54.282358+00:00,1795428714282,,HTTP_ERROR,400,270.1,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+73,primary,2026-11-23T10:12:00.713+00:00,1795428720713,,,False,0,,NO_FIX,2026-11-23T15:42:00,2026-11-23T10:12:00.712934+00:00,1795428720713,30105,HTTP_ERROR,404,205.9,
+74,primary,2026-11-23T10:12:00.931+00:00,1795428720931,,,False,0,,NO_FIX,2026-11-23T15:42:00,2026-11-23T10:12:00.931590+00:00,1795428720931,30105,HTTP_ERROR,404,388.3,
+48,secondary,2026-11-23T10:12:00.928+00:00,1795428720928,,,False,0,,NO_FIX,2026-11-23T15:41:54,2026-11-23T10:11:54.482486+00:00,1795428714482,,HTTP_ERROR,400,408.4,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+75,primary,2026-11-23T10:12:01.330+00:00,1795428721330,,,False,0,,NO_FIX,2026-11-23T15:42:01,2026-11-23T10:12:01.330641+00:00,1795428721330,30105,HTTP_ERROR,404,176.3,
+49,secondary,2026-11-23T10:12:01.338+00:00,1795428721338,,,False,0,,NO_FIX,2026-11-23T15:41:54,2026-11-23T10:11:54.872222+00:00,1795428714872,,HTTP_ERROR,400,189.9,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+76,primary,2026-11-23T10:12:01.532+00:00,1795428721532,,,False,0,,NO_FIX,2026-11-23T15:42:01,2026-11-23T10:12:01.532125+00:00,1795428721532,30105,HTTP_ERROR,404,372.9,
+50,secondary,2026-11-23T10:12:01.529+00:00,1795428721529,,,False,0,,NO_FIX,2026-11-23T15:41:55,2026-11-23T10:11:55.082825+00:00,1795428715083,,HTTP_ERROR,400,387.4,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+51,secondary,2026-11-23T10:12:02.294+00:00,1795428722294,,,False,0,,NO_FIX,2026-11-23T15:41:55,2026-11-23T10:11:55.286180+00:00,1795428715286,,HTTP_ERROR,400,330.8,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+52,secondary,2026-11-23T10:12:02.633+00:00,1795428722633,,,False,0,,NO_FIX,2026-11-23T15:41:55,2026-11-23T10:11:55.537210+00:00,1795428715537,,HTTP_ERROR,400,240.4,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+53,secondary,2026-11-23T10:12:03.059+00:00,1795428723059,,,False,0,,NO_FIX,2026-11-23T15:41:55,2026-11-23T10:11:55.737408+00:00,1795428715737,,HTTP_ERROR,400,156.9,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+77,primary,2026-11-23T10:12:01.916+00:00,1795428721916,,,False,0,,NO_FIX,2026-11-23T15:42:01,2026-11-23T10:12:01.916107+00:00,1795428721916,30105,HTTP_ERROR,404,1500.1,
+54,secondary,2026-11-23T10:12:03.216+00:00,1795428723216,,,False,0,,NO_FIX,2026-11-23T15:41:55,2026-11-23T10:11:55.937495+00:00,1795428715937,,HTTP_ERROR,400,221.6,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+78,primary,2026-11-23T10:12:03.427+00:00,1795428723427,,,False,0,,NO_FIX,2026-11-23T15:42:03,2026-11-23T10:12:03.427174+00:00,1795428723427,30105,HTTP_ERROR,404,147.0,
+79,primary,2026-11-23T10:12:03.627+00:00,1795428723627,,,False,0,,NO_FIX,2026-11-23T15:42:03,2026-11-23T10:12:03.627363+00:00,1795428723627,30105,HTTP_ERROR,404,266.8,
+80,primary,2026-11-23T10:12:03.905+00:00,1795428723905,,,False,0,,NO_FIX,2026-11-23T15:42:03,2026-11-23T10:12:03.904892+00:00,1795428723905,30105,HTTP_ERROR,404,159.7,
+81,primary,2026-11-23T10:12:04.105+00:00,1795428724105,,,False,0,,NO_FIX,2026-11-23T15:42:04,2026-11-23T10:12:04.105009+00:00,1795428724105,30105,HTTP_ERROR,404,134.1,
+82,primary,2026-11-23T10:12:04.305+00:00,1795428724305,,,False,0,,NO_FIX,2026-11-23T15:42:04,2026-11-23T10:12:04.305133+00:00,1795428724305,30105,HTTP_ERROR,404,248.7,
+83,primary,2026-11-23T10:12:04.564+00:00,1795428724564,,,False,0,,NO_FIX,2026-11-23T15:42:04,2026-11-23T10:12:04.564493+00:00,1795428724564,30105,HTTP_ERROR,404,367.8,
+84,primary,2026-11-23T10:12:04.950+00:00,1795428724950,,,False,0,,NO_FIX,2026-11-23T15:42:04,2026-11-23T10:12:04.949956+00:00,1795428724950,30105,HTTP_ERROR,404,146.9,
+85,primary,2026-11-23T10:12:05.150+00:00,1795428725150,,,False,0,,NO_FIX,2026-11-23T15:42:05,2026-11-23T10:12:05.150105+00:00,1795428725150,30105,HTTP_ERROR,404,152.7,
+86,primary,2026-11-23T10:12:05.350+00:00,1795428725350,,,False,0,,NO_FIX,2026-11-23T15:42:05,2026-11-23T10:12:05.350256+00:00,1795428725350,30105,HTTP_ERROR,404,194.0,
+55,secondary,2026-11-23T10:12:05.390+00:00,1795428725390,,,False,0,,NO_FIX,2026-11-23T15:41:56,2026-11-23T10:11:56.630811+00:00,1795428716630,,HTTP_ERROR,400,187.7,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+87,primary,2026-11-23T10:12:05.555+00:00,1795428725555,,,False,0,,NO_FIX,2026-11-23T15:42:05,2026-11-23T10:12:05.555009+00:00,1795428725555,30105,HTTP_ERROR,404,161.8,
+56,secondary,2026-11-23T10:12:05.579+00:00,1795428725579,,,False,0,,NO_FIX,2026-11-23T15:41:56,2026-11-23T10:11:56.841762+00:00,1795428716841,,HTTP_ERROR,400,158.8,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+88,primary,2026-11-23T10:12:05.755+00:00,1795428725755,,,False,0,,NO_FIX,2026-11-23T15:42:05,2026-11-23T10:12:05.755158+00:00,1795428725755,30105,HTTP_ERROR,404,145.1,
+89,primary,2026-11-23T10:12:05.955+00:00,1795428725955,,,False,0,,NO_FIX,2026-11-23T15:42:05,2026-11-23T10:12:05.955306+00:00,1795428725955,30105,HTTP_ERROR,404,137.5,
+57,secondary,2026-11-23T10:12:06.040+00:00,1795428726040,,,False,0,,NO_FIX,2026-11-23T15:41:57,2026-11-23T10:11:57.060163+00:00,1795428717060,,HTTP_ERROR,400,203.4,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+90,primary,2026-11-23T10:12:06.155+00:00,1795428726155,,,False,0,,NO_FIX,2026-11-23T15:42:06,2026-11-23T10:12:06.155417+00:00,1795428726155,30105,HTTP_ERROR,404,137.9,
+58,secondary,2026-11-23T10:12:06.244+00:00,1795428726244,,,False,0,,NO_FIX,2026-11-23T15:41:57,2026-11-23T10:11:57.260328+00:00,1795428717260,,HTTP_ERROR,400,158.5,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+91,primary,2026-11-23T10:12:06.355+00:00,1795428726355,,,False,0,,NO_FIX,2026-11-23T15:42:06,2026-11-23T10:12:06.355670+00:00,1795428726355,30105,HTTP_ERROR,404,137.3,
+92,primary,2026-11-23T10:12:06.556+00:00,1795428726556,,,False,0,,NO_FIX,2026-11-23T15:42:06,2026-11-23T10:12:06.555800+00:00,1795428726556,30105,HTTP_ERROR,404,179.0,
+59,secondary,2026-11-23T10:12:06.623+00:00,1795428726623,,,False,0,,NO_FIX,2026-11-23T15:41:57,2026-11-23T10:11:57.462879+00:00,1795428717463,,HTTP_ERROR,400,157.4,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+93,primary,2026-11-23T10:12:06.756+00:00,1795428726756,,,False,0,,NO_FIX,2026-11-23T15:42:06,2026-11-23T10:12:06.755919+00:00,1795428726756,30105,HTTP_ERROR,404,189.1,
+94,primary,2026-11-23T10:12:06.962+00:00,1795428726962,,,False,0,,NO_FIX,2026-11-23T15:42:06,2026-11-23T10:12:06.962573+00:00,1795428726962,30105,HTTP_ERROR,404,152.3,
+95,primary,2026-11-23T10:12:07.163+00:00,1795428727163,,,False,0,,NO_FIX,2026-11-23T15:42:07,2026-11-23T10:12:07.162811+00:00,1795428727162,30105,HTTP_ERROR,404,140.1,
+60,secondary,2026-11-23T10:12:06.781+00:00,1795428726781,,,False,0,,NO_FIX,2026-11-23T15:41:57,2026-11-23T10:11:57.712070+00:00,1795428717712,,HTTP_ERROR,400,719.1,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+96,primary,2026-11-23T10:12:07.363+00:00,1795428727363,,,False,0,,NO_FIX,2026-11-23T15:42:07,2026-11-23T10:12:07.363215+00:00,1795428727363,30105,HTTP_ERROR,404,375.6,
+97,primary,2026-11-23T10:12:07.750+00:00,1795428727750,,,False,0,,NO_FIX,2026-11-23T15:42:07,2026-11-23T10:12:07.749682+00:00,1795428727749,30105,HTTP_ERROR,404,192.3,
+61,secondary,2026-11-23T10:12:07.834+00:00,1795428727834,,,False,0,,NO_FIX,2026-11-23T15:41:57,2026-11-23T10:11:57.912193+00:00,1795428717912,,HTTP_ERROR,400,155.9,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+98,primary,2026-11-23T10:12:07.953+00:00,1795428727953,,,False,0,,NO_FIX,2026-11-23T15:42:07,2026-11-23T10:12:07.952776+00:00,1795428727952,30105,HTTP_ERROR,404,159.1,
+62,secondary,2026-11-23T10:12:07.990+00:00,1795428727990,,,False,0,,NO_FIX,2026-11-23T15:41:58,2026-11-23T10:11:58.143959+00:00,1795428718144,,HTTP_ERROR,400,155.7,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+99,primary,2026-11-23T10:12:08.153+00:00,1795428728153,,,False,0,,NO_FIX,2026-11-23T15:42:08,2026-11-23T10:12:08.152901+00:00,1795428728153,30105,HTTP_ERROR,404,157.6,
+100,primary,2026-11-23T10:12:08.353+00:00,1795428728353,,,False,0,,NO_FIX,2026-11-23T15:42:08,2026-11-23T10:12:08.353050+00:00,1795428728353,30105,HTTP_ERROR,404,150.8,
+101,primary,2026-11-23T10:12:08.553+00:00,1795428728553,,,False,0,,NO_FIX,2026-11-23T15:42:08,2026-11-23T10:12:08.553182+00:00,1795428728553,30105,HTTP_ERROR,404,154.3,
+63,secondary,2026-11-23T10:12:08.509+00:00,1795428728509,,,False,0,,NO_FIX,2026-11-23T15:41:58,2026-11-23T10:11:58.376359+00:00,1795428718376,,HTTP_ERROR,400,200.1,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+64,secondary,2026-11-23T10:12:08.710+00:00,1795428728710,,,False,0,,NO_FIX,2026-11-23T15:41:58,2026-11-23T10:11:58.576513+00:00,1795428718576,,HTTP_ERROR,400,184.1,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+102,primary,2026-11-23T10:12:08.753+00:00,1795428728753,,,False,0,,NO_FIX,2026-11-23T15:42:08,2026-11-23T10:12:08.753315+00:00,1795428728753,30105,HTTP_ERROR,404,146.2,
+103,primary,2026-11-23T10:12:08.953+00:00,1795428728953,,,False,0,,NO_FIX,2026-11-23T15:42:08,2026-11-23T10:12:08.953471+00:00,1795428728953,30105,HTTP_ERROR,404,161.2,
+65,secondary,2026-11-23T10:12:09.074+00:00,1795428729074,,,False,0,,NO_FIX,2026-11-23T15:41:58,2026-11-23T10:11:58.801039+00:00,1795428718801,,HTTP_ERROR,400,155.7,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+104,primary,2026-11-23T10:12:09.153+00:00,1795428729153,,,False,0,,NO_FIX,2026-11-23T15:42:09,2026-11-23T10:12:09.153564+00:00,1795428729153,30105,HTTP_ERROR,404,151.3,
+66,secondary,2026-11-23T10:12:09.231+00:00,1795428729231,,,False,0,,NO_FIX,2026-11-23T15:41:59,2026-11-23T10:11:59.007983+00:00,1795428719008,,HTTP_ERROR,400,157.0,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+105,primary,2026-11-23T10:12:09.354+00:00,1795428729354,,,False,0,,NO_FIX,2026-11-23T15:42:09,2026-11-23T10:12:09.353731+00:00,1795428729353,30105,HTTP_ERROR,404,191.8,
+106,primary,2026-11-23T10:12:09.556+00:00,1795428729556,,,False,0,,NO_FIX,2026-11-23T15:42:09,2026-11-23T10:12:09.556296+00:00,1795428729556,30105,HTTP_ERROR,404,142.5,
+107,primary,2026-11-23T10:12:09.756+00:00,1795428729756,,,False,0,,NO_FIX,2026-11-23T15:42:09,2026-11-23T10:12:09.756443+00:00,1795428729756,30105,HTTP_ERROR,404,167.4,
+108,primary,2026-11-23T10:12:09.956+00:00,1795428729956,,,False,0,,NO_FIX,2026-11-23T15:42:09,2026-11-23T10:12:09.956600+00:00,1795428729956,30105,HTTP_ERROR,404,176.5,
+109,primary,2026-11-23T10:12:10.157+00:00,1795428730157,,,False,0,,NO_FIX,2026-11-23T15:42:10,2026-11-23T10:12:10.156768+00:00,1795428730156,30105,HTTP_ERROR,404,180.1,
+67,secondary,2026-11-23T10:12:10.272+00:00,1795428730272,,,False,0,,NO_FIX,2026-11-23T15:41:59,2026-11-23T10:11:59.326929+00:00,1795428719327,,HTTP_ERROR,400,191.7,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+110,primary,2026-11-23T10:12:10.357+00:00,1795428730357,,,False,0,,NO_FIX,2026-11-23T15:42:10,2026-11-23T10:12:10.356903+00:00,1795428730357,30105,HTTP_ERROR,404,166.6,
+68,secondary,2026-11-23T10:12:10.464+00:00,1795428730464,,,False,0,,NO_FIX,2026-11-23T15:41:59,2026-11-23T10:11:59.563568+00:00,1795428719563,,HTTP_ERROR,400,152.8,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+111,primary,2026-11-23T10:12:10.557+00:00,1795428730557,,,False,0,,NO_FIX,2026-11-23T15:42:10,2026-11-23T10:12:10.557040+00:00,1795428730557,30105,HTTP_ERROR,404,144.4,
+112,primary,2026-11-23T10:12:10.757+00:00,1795428730757,,,False,0,,NO_FIX,2026-11-23T15:42:10,2026-11-23T10:12:10.757151+00:00,1795428730757,30105,HTTP_ERROR,404,138.2,
+69,secondary,2026-11-23T10:12:10.927+00:00,1795428730927,,,False,0,,NO_FIX,2026-11-23T15:41:59,2026-11-23T10:11:59.763693+00:00,1795428719763,,HTTP_ERROR,400,158.2,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+113,primary,2026-11-23T10:12:10.957+00:00,1795428730957,,,False,0,,NO_FIX,2026-11-23T15:42:10,2026-11-23T10:12:10.957328+00:00,1795428730957,30105,HTTP_ERROR,404,152.5,
+70,secondary,2026-11-23T10:12:11.277+00:00,1795428731277,,,False,0,,NO_FIX,2026-11-23T15:42:00,2026-11-23T10:12:00.008252+00:00,1795428720008,,HTTP_ERROR,400,175.4,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+71,secondary,2026-11-23T10:12:11.468+00:00,1795428731468,,,False,0,,NO_FIX,2026-11-23T15:42:00,2026-11-23T10:12:00.240695+00:00,1795428720240,,HTTP_ERROR,400,155.4,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+114,primary,2026-11-23T10:12:11.157+00:00,1795428731157,,,False,0,,NO_FIX,2026-11-23T15:42:11,2026-11-23T10:12:11.157472+00:00,1795428731157,30105,HTTP_ERROR,404,657.9,
+115,primary,2026-11-23T10:12:11.826+00:00,1795428731826,,,False,0,,NO_FIX,2026-11-23T15:42:11,2026-11-23T10:12:11.826139+00:00,1795428731826,30105,HTTP_ERROR,404,134.9,
+72,secondary,2026-11-23T10:12:11.966+00:00,1795428731966,,,False,0,,NO_FIX,2026-11-23T15:42:00,2026-11-23T10:12:00.441281+00:00,1795428720441,,HTTP_ERROR,400,183.7,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+116,primary,2026-11-23T10:12:12.026+00:00,1795428732026,,,False,0,,NO_FIX,2026-11-23T15:42:12,2026-11-23T10:12:12.026296+00:00,1795428732026,30105,HTTP_ERROR,404,174.7,
+73,secondary,2026-11-23T10:12:12.150+00:00,1795428732150,,,False,0,,NO_FIX,2026-11-23T15:42:00,2026-11-23T10:12:00.712934+00:00,1795428720713,,HTTP_ERROR,400,183.4,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+117,primary,2026-11-23T10:12:12.226+00:00,1795428732226,,,False,0,,NO_FIX,2026-11-23T15:42:12,2026-11-23T10:12:12.226481+00:00,1795428732226,30105,HTTP_ERROR,404,197.8,
+74,secondary,2026-11-23T10:12:12.894+00:00,1795428732894,,,False,0,,NO_FIX,2026-11-23T15:42:00,2026-11-23T10:12:00.931590+00:00,1795428720931,,HTTP_ERROR,400,162.3,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+118,primary,2026-11-23T10:12:12.435+00:00,1795428732435,,,False,0,,NO_FIX,2026-11-23T15:42:12,2026-11-23T10:12:12.435151+00:00,1795428732435,30105,HTTP_ERROR,404,718.4,
+119,primary,2026-11-23T10:12:13.164+00:00,1795428733164,,,False,0,,NO_FIX,2026-11-23T15:42:13,2026-11-23T10:12:13.164302+00:00,1795428733164,30105,HTTP_ERROR,404,140.5,
+120,primary,2026-11-23T10:12:13.364+00:00,1795428733364,,,False,0,,NO_FIX,2026-11-23T15:42:13,2026-11-23T10:12:13.364510+00:00,1795428733364,30105,HTTP_ERROR,404,219.5,
+121,primary,2026-11-23T10:12:13.602+00:00,1795428733602,,,False,0,,NO_FIX,2026-11-23T15:42:13,2026-11-23T10:12:13.602648+00:00,1795428733602,30105,HTTP_ERROR,404,140.3,
+75,secondary,2026-11-23T10:12:13.429+00:00,1795428733429,,,False,0,,NO_FIX,2026-11-23T15:42:01,2026-11-23T10:12:01.330641+00:00,1795428721330,,HTTP_ERROR,400,361.8,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+122,primary,2026-11-23T10:12:13.803+00:00,1795428733803,,,False,0,,NO_FIX,2026-11-23T15:42:13,2026-11-23T10:12:13.802994+00:00,1795428733803,30105,HTTP_ERROR,404,187.7,
+76,secondary,2026-11-23T10:12:13.791+00:00,1795428733791,,,False,0,,NO_FIX,2026-11-23T15:42:01,2026-11-23T10:12:01.532125+00:00,1795428721532,,HTTP_ERROR,400,202.9,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+123,primary,2026-11-23T10:12:14.003+00:00,1795428734003,,,False,0,,NO_FIX,2026-11-23T15:42:14,2026-11-23T10:12:14.003687+00:00,1795428734003,30105,HTTP_ERROR,404,142.9,
+124,primary,2026-11-23T10:12:14.204+00:00,1795428734204,,,False,0,,NO_FIX,2026-11-23T15:42:14,2026-11-23T10:12:14.204274+00:00,1795428734204,30105,HTTP_ERROR,404,324.0,
+125,primary,2026-11-23T10:12:14.539+00:00,1795428734539,,,False,0,,NO_FIX,2026-11-23T15:42:14,2026-11-23T10:12:14.538991+00:00,1795428734539,30105,HTTP_ERROR,404,145.8,
+77,secondary,2026-11-23T10:12:14.556+00:00,1795428734556,,,False,0,,NO_FIX,2026-11-23T15:42:01,2026-11-23T10:12:01.916107+00:00,1795428721916,,HTTP_ERROR,400,214.3,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+126,primary,2026-11-23T10:12:14.739+00:00,1795428734739,,,False,0,,NO_FIX,2026-11-23T15:42:14,2026-11-23T10:12:14.739138+00:00,1795428734739,30105,HTTP_ERROR,404,244.4,
+127,primary,2026-11-23T10:12:14.994+00:00,1795428734994,,,False,0,,NO_FIX,2026-11-23T15:42:14,2026-11-23T10:12:14.994341+00:00,1795428734994,30105,HTTP_ERROR,404,141.2,
+128,primary,2026-11-23T10:12:15.194+00:00,1795428735194,,,False,0,,NO_FIX,2026-11-23T15:42:15,2026-11-23T10:12:15.194463+00:00,1795428735194,30105,HTTP_ERROR,404,232.3,
+129,primary,2026-11-23T10:12:15.439+00:00,1795428735439,,,False,0,,NO_FIX,2026-11-23T15:42:15,2026-11-23T10:12:15.439282+00:00,1795428735439,30105,HTTP_ERROR,404,235.3,
+130,primary,2026-11-23T10:12:15.689+00:00,1795428735689,,,False,0,,NO_FIX,2026-11-23T15:42:15,2026-11-23T10:12:15.689272+00:00,1795428735689,30105,HTTP_ERROR,404,372.7,
+78,secondary,2026-11-23T10:12:15.821+00:00,1795428735821,,,False,0,,NO_FIX,2026-11-23T15:42:03,2026-11-23T10:12:03.427174+00:00,1795428723427,,HTTP_ERROR,400,351.7,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+131,primary,2026-11-23T10:12:16.073+00:00,1795428736073,,,False,0,,NO_FIX,2026-11-23T15:42:16,2026-11-23T10:12:16.072689+00:00,1795428736072,30105,HTTP_ERROR,404,173.1,
+132,primary,2026-11-23T10:12:16.273+00:00,1795428736273,,,False,0,,NO_FIX,2026-11-23T15:42:16,2026-11-23T10:12:16.273332+00:00,1795428736273,30105,HTTP_ERROR,404,406.9,
+133,primary,2026-11-23T10:12:16.691+00:00,1795428736691,,,False,0,,NO_FIX,2026-11-23T15:42:16,2026-11-23T10:12:16.691236+00:00,1795428736691,30105,HTTP_ERROR,404,157.9,
+79,secondary,2026-11-23T10:12:16.743+00:00,1795428736743,,,False,0,,NO_FIX,2026-11-23T15:42:03,2026-11-23T10:12:03.627363+00:00,1795428723627,,HTTP_ERROR,400,158.4,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+134,primary,2026-11-23T10:12:16.891+00:00,1795428736891,,,False,0,,NO_FIX,2026-11-23T15:42:16,2026-11-23T10:12:16.891360+00:00,1795428736891,30105,HTTP_ERROR,404,401.3,
+80,secondary,2026-11-23T10:12:16.901+00:00,1795428736901,,,False,0,,NO_FIX,2026-11-23T15:42:03,2026-11-23T10:12:03.904892+00:00,1795428723905,,HTTP_ERROR,400,412.1,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+135,primary,2026-11-23T10:12:17.305+00:00,1795428737305,,,False,0,,NO_FIX,2026-11-23T15:42:17,2026-11-23T10:12:17.303951+00:00,1795428737304,30105,HTTP_ERROR,404,147.5,
+136,primary,2026-11-23T10:12:17.504+00:00,1795428737504,,,False,0,,NO_FIX,2026-11-23T15:42:17,2026-11-23T10:12:17.504004+00:00,1795428737504,30105,HTTP_ERROR,404,425.1,
+81,secondary,2026-11-23T10:12:17.512+00:00,1795428737512,,,False,0,,NO_FIX,2026-11-23T15:42:04,2026-11-23T10:12:04.105009+00:00,1795428724105,,HTTP_ERROR,400,430.6,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+137,primary,2026-11-23T10:12:17.954+00:00,1795428737954,,,False,0,,NO_FIX,2026-11-23T15:42:17,2026-11-23T10:12:17.953802+00:00,1795428737954,30105,HTTP_ERROR,404,151.2,
+82,secondary,2026-11-23T10:12:17.944+00:00,1795428737944,,,False,0,,NO_FIX,2026-11-23T15:42:04,2026-11-23T10:12:04.305133+00:00,1795428724305,,HTTP_ERROR,400,171.6,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+138,primary,2026-11-23T10:12:18.154+00:00,1795428738154,,,False,0,,NO_FIX,2026-11-23T15:42:18,2026-11-23T10:12:18.154016+00:00,1795428738154,30105,HTTP_ERROR,404,343.9,
+139,primary,2026-11-23T10:12:18.509+00:00,1795428738509,,,False,0,,NO_FIX,2026-11-23T15:42:18,2026-11-23T10:12:18.508793+00:00,1795428738508,30105,HTTP_ERROR,404,205.1,
+83,secondary,2026-11-23T10:12:18.513+00:00,1795428738513,,,False,0,,NO_FIX,2026-11-23T15:42:04,2026-11-23T10:12:04.564493+00:00,1795428724564,,HTTP_ERROR,400,220.6,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+140,primary,2026-11-23T10:12:18.725+00:00,1795428738725,,,False,0,,NO_FIX,2026-11-23T15:42:18,2026-11-23T10:12:18.724878+00:00,1795428738725,30105,HTTP_ERROR,404,136.1,
+141,primary,2026-11-23T10:12:18.925+00:00,1795428738925,,,False,0,,NO_FIX,2026-11-23T15:42:18,2026-11-23T10:12:18.924960+00:00,1795428738925,30105,HTTP_ERROR,404,349.9,
+84,secondary,2026-11-23T10:12:19.169+00:00,1795428739169,,,False,0,,NO_FIX,2026-11-23T15:42:04,2026-11-23T10:12:04.949956+00:00,1795428724950,,HTTP_ERROR,400,189.3,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+142,primary,2026-11-23T10:12:19.285+00:00,1795428739285,,,False,0,,NO_FIX,2026-11-23T15:42:19,2026-11-23T10:12:19.285549+00:00,1795428739285,30105,HTTP_ERROR,404,139.3,
+85,secondary,2026-11-23T10:12:19.359+00:00,1795428739359,,,False,0,,NO_FIX,2026-11-23T15:42:05,2026-11-23T10:12:05.150105+00:00,1795428725150,,HTTP_ERROR,400,153.5,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+143,primary,2026-11-23T10:12:19.486+00:00,1795428739486,,,False,0,,NO_FIX,2026-11-23T15:42:19,2026-11-23T10:12:19.485708+00:00,1795428739485,30105,HTTP_ERROR,404,347.6,
+144,primary,2026-11-23T10:12:19.844+00:00,1795428739844,,,False,0,,NO_FIX,2026-11-23T15:42:19,2026-11-23T10:12:19.844135+00:00,1795428739844,30105,HTTP_ERROR,404,151.0,
+86,secondary,2026-11-23T10:12:19.904+00:00,1795428739904,,,False,0,,NO_FIX,2026-11-23T15:42:05,2026-11-23T10:12:05.350256+00:00,1795428725350,,HTTP_ERROR,400,154.7,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+145,primary,2026-11-23T10:12:20.044+00:00,1795428740044,,,False,0,,NO_FIX,2026-11-23T15:42:20,2026-11-23T10:12:20.044564+00:00,1795428740044,30105,HTTP_ERROR,404,387.8,
+87,secondary,2026-11-23T10:12:20.059+00:00,1795428740059,,,False,0,,NO_FIX,2026-11-23T15:42:05,2026-11-23T10:12:05.555009+00:00,1795428725555,,HTTP_ERROR,400,444.9,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+146,primary,2026-11-23T10:12:20.443+00:00,1795428740443,,,False,0,,NO_FIX,2026-11-23T15:42:20,2026-11-23T10:12:20.443259+00:00,1795428740443,30105,HTTP_ERROR,404,155.3,
+147,primary,2026-11-23T10:12:20.643+00:00,1795428740643,,,False,0,,NO_FIX,2026-11-23T15:42:20,2026-11-23T10:12:20.643407+00:00,1795428740643,30105,HTTP_ERROR,404,413.7,
+88,secondary,2026-11-23T10:12:20.682+00:00,1795428740682,,,False,0,,NO_FIX,2026-11-23T15:42:05,2026-11-23T10:12:05.755158+00:00,1795428725755,,HTTP_ERROR,400,400.2,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+148,primary,2026-11-23T10:12:21.068+00:00,1795428741068,,,False,0,,NO_FIX,2026-11-23T15:42:21,2026-11-23T10:12:21.067942+00:00,1795428741068,30105,HTTP_ERROR,404,137.0,
+89,secondary,2026-11-23T10:12:21.083+00:00,1795428741083,,,False,0,,NO_FIX,2026-11-23T15:42:05,2026-11-23T10:12:05.955306+00:00,1795428725955,,HTTP_ERROR,400,157.6,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+149,primary,2026-11-23T10:12:21.268+00:00,1795428741268,,,False,0,,NO_FIX,2026-11-23T15:42:21,2026-11-23T10:12:21.268202+00:00,1795428741268,30105,HTTP_ERROR,404,429.8,
+150,primary,2026-11-23T10:12:21.711+00:00,1795428741711,,,False,0,,NO_FIX,2026-11-23T15:42:21,2026-11-23T10:12:21.710939+00:00,1795428741711,30105,HTTP_ERROR,404,151.4,
+90,secondary,2026-11-23T10:12:21.711+00:00,1795428741711,,,False,0,,NO_FIX,2026-11-23T15:42:06,2026-11-23T10:12:06.155417+00:00,1795428726155,,HTTP_ERROR,400,157.9,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+151,primary,2026-11-23T10:12:21.911+00:00,1795428741911,,,False,0,,NO_FIX,2026-11-23T15:42:21,2026-11-23T10:12:21.911077+00:00,1795428741911,30105,HTTP_ERROR,404,388.6,
+91,secondary,2026-11-23T10:12:21.870+00:00,1795428741870,,,False,0,,NO_FIX,2026-11-23T15:42:06,2026-11-23T10:12:06.355670+00:00,1795428726355,,HTTP_ERROR,400,435.0,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+152,primary,2026-11-23T10:12:22.316+00:00,1795428742316,,,False,0,,NO_FIX,2026-11-23T15:42:22,2026-11-23T10:12:22.316408+00:00,1795428742316,30105,HTTP_ERROR,404,159.6,
+153,primary,2026-11-23T10:12:22.516+00:00,1795428742516,,,False,0,,NO_FIX,2026-11-23T15:42:22,2026-11-23T10:12:22.516493+00:00,1795428742516,30105,HTTP_ERROR,404,414.5,
+92,secondary,2026-11-23T10:12:22.485+00:00,1795428742485,,,False,0,,NO_FIX,2026-11-23T15:42:06,2026-11-23T10:12:06.555800+00:00,1795428726556,,HTTP_ERROR,400,449.0,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+154,primary,2026-11-23T10:12:22.941+00:00,1795428742941,,,False,0,,NO_FIX,2026-11-23T15:42:22,2026-11-23T10:12:22.941456+00:00,1795428742941,30105,HTTP_ERROR,404,146.5,
+93,secondary,2026-11-23T10:12:22.935+00:00,1795428742935,,,False,0,,NO_FIX,2026-11-23T15:42:06,2026-11-23T10:12:06.755919+00:00,1795428726756,,HTTP_ERROR,400,153.2,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+155,primary,2026-11-23T10:12:23.141+00:00,1795428743141,,,False,0,,NO_FIX,2026-11-23T15:42:23,2026-11-23T10:12:23.141567+00:00,1795428743141,30105,HTTP_ERROR,404,403.7,
+156,primary,2026-11-23T10:12:23.555+00:00,1795428743555,,,False,0,,NO_FIX,2026-11-23T15:42:23,2026-11-23T10:12:23.555808+00:00,1795428743555,30105,HTTP_ERROR,404,164.6,
+94,secondary,2026-11-23T10:12:23.558+00:00,1795428743558,,,False,0,,NO_FIX,2026-11-23T15:42:06,2026-11-23T10:12:06.962573+00:00,1795428726962,,HTTP_ERROR,400,180.0,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+157,primary,2026-11-23T10:12:23.756+00:00,1795428743756,,,False,0,,NO_FIX,2026-11-23T15:42:23,2026-11-23T10:12:23.755914+00:00,1795428743756,30105,HTTP_ERROR,404,414.5,
+95,secondary,2026-11-23T10:12:23.739+00:00,1795428743739,,,False,0,,NO_FIX,2026-11-23T15:42:07,2026-11-23T10:12:07.162811+00:00,1795428727162,,HTTP_ERROR,400,434.4,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+158,primary,2026-11-23T10:12:24.181+00:00,1795428744181,,,False,0,,NO_FIX,2026-11-23T15:42:24,2026-11-23T10:12:24.181160+00:00,1795428744181,30105,HTTP_ERROR,404,145.3,
+159,primary,2026-11-23T10:12:24.381+00:00,1795428744381,,,False,0,,NO_FIX,2026-11-23T15:42:24,2026-11-23T10:12:24.381186+00:00,1795428744381,30105,HTTP_ERROR,404,377.4,
+160,primary,2026-11-23T10:12:24.769+00:00,1795428744769,,,False,0,,NO_FIX,2026-11-23T15:42:24,2026-11-23T10:12:24.769123+00:00,1795428744769,30105,HTTP_ERROR,404,148.6,
+161,primary,2026-11-23T10:12:24.969+00:00,1795428744969,,,False,0,,NO_FIX,2026-11-23T15:42:24,2026-11-23T10:12:24.969209+00:00,1795428744969,30105,HTTP_ERROR,404,286.8,
+96,secondary,2026-11-23T10:12:24.173+00:00,1795428744173,,,False,0,,NO_FIX,2026-11-23T15:42:07,2026-11-23T10:12:07.363215+00:00,1795428727363,,HTTP_ERROR,400,1282.3,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+162,primary,2026-11-23T10:12:25.266+00:00,1795428745266,,,False,0,,NO_FIX,2026-11-23T15:42:25,2026-11-23T10:12:25.266471+00:00,1795428745266,30105,HTTP_ERROR,404,241.2,
+163,primary,2026-11-23T10:12:25.518+00:00,1795428745518,,,False,0,,NO_FIX,2026-11-23T15:42:25,2026-11-23T10:12:25.518276+00:00,1795428745518,30105,HTTP_ERROR,404,137.8,
+164,primary,2026-11-23T10:12:25.718+00:00,1795428745718,,,False,0,,NO_FIX,2026-11-23T15:42:25,2026-11-23T10:12:25.718357+00:00,1795428745718,30105,HTTP_ERROR,404,182.9,
+97,secondary,2026-11-23T10:12:25.886+00:00,1795428745886,,,False,0,,NO_FIX,2026-11-23T15:42:07,2026-11-23T10:12:07.749682+00:00,1795428727749,,HTTP_ERROR,400,220.1,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+165,primary,2026-11-23T10:12:25.918+00:00,1795428745918,,,False,0,,NO_FIX,2026-11-23T15:42:25,2026-11-23T10:12:25.918476+00:00,1795428745918,30105,HTTP_ERROR,404,210.7,
+98,secondary,2026-11-23T10:12:26.107+00:00,1795428746107,,,False,0,,NO_FIX,2026-11-23T15:42:07,2026-11-23T10:12:07.952776+00:00,1795428727952,,HTTP_ERROR,400,152.4,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+166,primary,2026-11-23T10:12:26.139+00:00,1795428746139,,,False,0,,NO_FIX,2026-11-23T15:42:26,2026-11-23T10:12:26.139698+00:00,1795428746139,30105,HTTP_ERROR,404,137.0,
+99,secondary,2026-11-23T10:12:26.259+00:00,1795428746259,,,False,0,,NO_FIX,2026-11-23T15:42:08,2026-11-23T10:12:08.152901+00:00,1795428728153,,HTTP_ERROR,400,245.9,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+167,primary,2026-11-23T10:12:26.340+00:00,1795428746340,,,False,0,,NO_FIX,2026-11-23T15:42:26,2026-11-23T10:12:26.340065+00:00,1795428746340,30105,HTTP_ERROR,404,216.4,
+168,primary,2026-11-23T10:12:26.567+00:00,1795428746567,,,False,0,,NO_FIX,2026-11-23T15:42:26,2026-11-23T10:12:26.566973+00:00,1795428746567,30105,HTTP_ERROR,404,229.3,
+169,primary,2026-11-23T10:12:26.807+00:00,1795428746807,,,False,0,,NO_FIX,2026-11-23T15:42:26,2026-11-23T10:12:26.806942+00:00,1795428746807,30105,HTTP_ERROR,404,156.5,
+100,secondary,2026-11-23T10:12:26.782+00:00,1795428746782,,,False,0,,NO_FIX,2026-11-23T15:42:08,2026-11-23T10:12:08.353050+00:00,1795428728353,,HTTP_ERROR,400,190.1,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+101,secondary,2026-11-23T10:12:26.973+00:00,1795428746973,,,False,0,,NO_FIX,2026-11-23T15:42:08,2026-11-23T10:12:08.553182+00:00,1795428728553,,HTTP_ERROR,400,195.2,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+170,primary,2026-11-23T10:12:27.007+00:00,1795428747007,,,False,0,,NO_FIX,2026-11-23T15:42:27,2026-11-23T10:12:27.007054+00:00,1795428747007,30105,HTTP_ERROR,404,200.6,
+171,primary,2026-11-23T10:12:27.218+00:00,1795428747218,,,False,0,,NO_FIX,2026-11-23T15:42:27,2026-11-23T10:12:27.218578+00:00,1795428747218,30105,HTTP_ERROR,404,218.9,
+172,primary,2026-11-23T10:12:27.448+00:00,1795428747448,,,False,0,,NO_FIX,2026-11-23T15:42:27,2026-11-23T10:12:27.448212+00:00,1795428747448,30105,HTTP_ERROR,404,260.9,
+102,secondary,2026-11-23T10:12:27.442+00:00,1795428747442,,,False,0,,NO_FIX,2026-11-23T15:42:08,2026-11-23T10:12:08.753315+00:00,1795428728753,,HTTP_ERROR,400,275.8,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+173,primary,2026-11-23T10:12:27.721+00:00,1795428747721,,,False,0,,NO_FIX,2026-11-23T15:42:27,2026-11-23T10:12:27.721509+00:00,1795428747721,30105,HTTP_ERROR,404,222.2,
+103,secondary,2026-11-23T10:12:27.718+00:00,1795428747718,,,False,0,,NO_FIX,2026-11-23T15:42:08,2026-11-23T10:12:08.953471+00:00,1795428728953,,HTTP_ERROR,400,229.3,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+174,primary,2026-11-23T10:12:27.954+00:00,1795428747954,,,False,0,,NO_FIX,2026-11-23T15:42:27,2026-11-23T10:12:27.954565+00:00,1795428747954,30105,HTTP_ERROR,404,168.5,
+175,primary,2026-11-23T10:12:28.154+00:00,1795428748154,,,False,0,,NO_FIX,2026-11-23T15:42:28,2026-11-23T10:12:28.154715+00:00,1795428748154,30105,HTTP_ERROR,404,233.8,
+104,secondary,2026-11-23T10:12:28.149+00:00,1795428748149,,,False,0,,NO_FIX,2026-11-23T15:42:09,2026-11-23T10:12:09.153564+00:00,1795428729153,,HTTP_ERROR,400,242.1,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+176,primary,2026-11-23T10:12:28.400+00:00,1795428748400,,,False,0,,NO_FIX,2026-11-23T15:42:28,2026-11-23T10:12:28.400055+00:00,1795428748400,30105,HTTP_ERROR,404,168.5,
+105,secondary,2026-11-23T10:12:28.392+00:00,1795428748392,,,False,0,,NO_FIX,2026-11-23T15:42:09,2026-11-23T10:12:09.353731+00:00,1795428729353,,HTTP_ERROR,400,181.9,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+177,primary,2026-11-23T10:12:28.600+00:00,1795428748600,,,False,0,,NO_FIX,2026-11-23T15:42:28,2026-11-23T10:12:28.600266+00:00,1795428748600,30105,HTTP_ERROR,404,380.7,
+106,secondary,2026-11-23T10:12:28.816+00:00,1795428748816,,,False,0,,NO_FIX,2026-11-23T15:42:09,2026-11-23T10:12:09.556296+00:00,1795428729556,,HTTP_ERROR,400,230.1,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+178,primary,2026-11-23T10:12:28.991+00:00,1795428748991,,,False,0,,NO_FIX,2026-11-23T15:42:28,2026-11-23T10:12:28.991645+00:00,1795428748991,30105,HTTP_ERROR,404,215.5,
+107,secondary,2026-11-23T10:12:29.047+00:00,1795428749047,,,False,0,,NO_FIX,2026-11-23T15:42:09,2026-11-23T10:12:09.756443+00:00,1795428729756,,HTTP_ERROR,400,187.5,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+179,primary,2026-11-23T10:12:29.218+00:00,1795428749218,,,False,0,,NO_FIX,2026-11-23T15:42:29,2026-11-23T10:12:29.218034+00:00,1795428749218,30105,HTTP_ERROR,404,328.2,
+180,primary,2026-11-23T10:12:29.557+00:00,1795428749557,,,False,0,,NO_FIX,2026-11-23T15:42:29,2026-11-23T10:12:29.556918+00:00,1795428749557,30105,HTTP_ERROR,404,233.1,
+108,secondary,2026-11-23T10:12:29.598+00:00,1795428749598,,,False,0,,NO_FIX,2026-11-23T15:42:09,2026-11-23T10:12:09.956600+00:00,1795428729956,,HTTP_ERROR,400,248.7,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+181,primary,2026-11-23T10:12:29.801+00:00,1795428749801,,,False,0,,NO_FIX,2026-11-23T15:42:29,2026-11-23T10:12:29.801261+00:00,1795428749801,30105,HTTP_ERROR,404,137.5,
+109,secondary,2026-11-23T10:12:29.848+00:00,1795428749848,,,False,0,,NO_FIX,2026-11-23T15:42:10,2026-11-23T10:12:10.156768+00:00,1795428730156,,HTTP_ERROR,400,157.7,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+182,primary,2026-11-23T10:12:30.001+00:00,1795428750001,,,False,0,,NO_FIX,2026-11-23T15:42:30,2026-11-23T10:12:30.001425+00:00,1795428750001,30105,HTTP_ERROR,404,213.7,
+110,secondary,2026-11-23T10:12:30.007+00:00,1795428750007,,,False,0,,NO_FIX,2026-11-23T15:42:10,2026-11-23T10:12:10.356903+00:00,1795428730357,,HTTP_ERROR,400,223.5,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+183,primary,2026-11-23T10:12:30.226+00:00,1795428750226,,,False,0,,NO_FIX,2026-11-23T15:42:30,2026-11-23T10:12:30.225920+00:00,1795428750226,30105,HTTP_ERROR,404,186.3,
+111,secondary,2026-11-23T10:12:30.231+00:00,1795428750231,,,False,0,,NO_FIX,2026-11-23T15:42:10,2026-11-23T10:12:10.557040+00:00,1795428730557,,HTTP_ERROR,400,203.9,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+184,primary,2026-11-23T10:12:30.429+00:00,1795428750429,,,False,0,,NO_FIX,2026-11-23T15:42:30,2026-11-23T10:12:30.428760+00:00,1795428750428,30105,HTTP_ERROR,404,178.3,
+185,primary,2026-11-23T10:12:30.629+00:00,1795428750629,,,False,0,,NO_FIX,2026-11-23T15:42:30,2026-11-23T10:12:30.628878+00:00,1795428750629,30105,HTTP_ERROR,404,228.5,
+186,primary,2026-11-23T10:12:30.868+00:00,1795428750868,,,False,0,,NO_FIX,2026-11-23T15:42:30,2026-11-23T10:12:30.868145+00:00,1795428750868,30105,HTTP_ERROR,404,213.5,
+112,secondary,2026-11-23T10:12:30.895+00:00,1795428750895,,,False,0,,NO_FIX,2026-11-23T15:42:10,2026-11-23T10:12:10.757151+00:00,1795428730757,,HTTP_ERROR,400,211.4,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+187,primary,2026-11-23T10:12:31.093+00:00,1795428751093,,,False,0,,NO_FIX,2026-11-23T15:42:31,2026-11-23T10:12:31.092694+00:00,1795428751092,30105,HTTP_ERROR,404,159.0,
+113,secondary,2026-11-23T10:12:31.107+00:00,1795428751107,,,False,0,,NO_FIX,2026-11-23T15:42:10,2026-11-23T10:12:10.957328+00:00,1795428730957,,HTTP_ERROR,400,403.4,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+188,primary,2026-11-23T10:12:31.293+00:00,1795428751293,,,False,0,,NO_FIX,2026-11-23T15:42:31,2026-11-23T10:12:31.292782+00:00,1795428751292,30105,HTTP_ERROR,404,266.4,
+114,secondary,2026-11-23T10:12:31.511+00:00,1795428751511,,,False,0,,NO_FIX,2026-11-23T15:42:11,2026-11-23T10:12:11.157472+00:00,1795428731157,,HTTP_ERROR,400,168.7,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+189,primary,2026-11-23T10:12:31.570+00:00,1795428751570,,,False,0,,NO_FIX,2026-11-23T15:42:31,2026-11-23T10:12:31.569917+00:00,1795428751570,30105,HTTP_ERROR,404,139.2,
+190,primary,2026-11-23T10:12:31.770+00:00,1795428751770,,,False,0,,NO_FIX,2026-11-23T15:42:31,2026-11-23T10:12:31.770089+00:00,1795428751770,30105,HTTP_ERROR,404,358.9,
+191,primary,2026-11-23T10:12:32.139+00:00,1795428752139,,,False,0,,NO_FIX,2026-11-23T15:42:32,2026-11-23T10:12:32.139723+00:00,1795428752139,30105,HTTP_ERROR,404,170.5,
+192,primary,2026-11-23T10:12:32.340+00:00,1795428752340,,,False,0,,NO_FIX,2026-11-23T15:42:32,2026-11-23T10:12:32.339883+00:00,1795428752340,30105,HTTP_ERROR,404,352.9,
+115,secondary,2026-11-23T10:12:32.370+00:00,1795428752370,,,False,0,,NO_FIX,2026-11-23T15:42:11,2026-11-23T10:12:11.826139+00:00,1795428731826,,HTTP_ERROR,400,334.2,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+193,primary,2026-11-23T10:12:32.710+00:00,1795428752710,,,False,0,,NO_FIX,2026-11-23T15:42:32,2026-11-23T10:12:32.710242+00:00,1795428752710,30105,HTTP_ERROR,404,227.5,
+116,secondary,2026-11-23T10:12:32.705+00:00,1795428752705,,,False,0,,NO_FIX,2026-11-23T15:42:12,2026-11-23T10:12:12.026296+00:00,1795428732026,,HTTP_ERROR,400,233.1,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+194,primary,2026-11-23T10:12:32.949+00:00,1795428752949,,,False,0,,NO_FIX,2026-11-23T15:42:32,2026-11-23T10:12:32.949176+00:00,1795428752949,30105,HTTP_ERROR,404,165.3,
+195,primary,2026-11-23T10:12:33.149+00:00,1795428753149,,,False,0,,NO_FIX,2026-11-23T15:42:33,2026-11-23T10:12:33.149294+00:00,1795428753149,30105,HTTP_ERROR,404,237.5,
+117,secondary,2026-11-23T10:12:33.127+00:00,1795428753127,,,False,0,,NO_FIX,2026-11-23T15:42:12,2026-11-23T10:12:12.226481+00:00,1795428732226,,HTTP_ERROR,400,264.2,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+196,primary,2026-11-23T10:12:33.397+00:00,1795428753397,,,False,0,,NO_FIX,2026-11-23T15:42:33,2026-11-23T10:12:33.397667+00:00,1795428753397,30105,HTTP_ERROR,404,218.7,
+118,secondary,2026-11-23T10:12:33.392+00:00,1795428753392,,,False,0,,NO_FIX,2026-11-23T15:42:12,2026-11-23T10:12:12.435151+00:00,1795428732435,,HTTP_ERROR,400,224.7,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+197,primary,2026-11-23T10:12:33.628+00:00,1795428753628,,,False,0,,NO_FIX,2026-11-23T15:42:33,2026-11-23T10:12:33.628023+00:00,1795428753628,30105,HTTP_ERROR,404,159.7,
+198,primary,2026-11-23T10:12:33.828+00:00,1795428753828,,,False,0,,NO_FIX,2026-11-23T15:42:33,2026-11-23T10:12:33.828149+00:00,1795428753828,30105,HTTP_ERROR,404,294.7,
+199,primary,2026-11-23T10:12:34.133+00:00,1795428754133,,,False,0,,NO_FIX,2026-11-23T15:42:34,2026-11-23T10:12:34.133623+00:00,1795428754133,30105,HTTP_ERROR,404,136.1,
+119,secondary,2026-11-23T10:12:34.088+00:00,1795428754088,,,False,0,,NO_FIX,2026-11-23T15:42:13,2026-11-23T10:12:13.164302+00:00,1795428733164,,HTTP_ERROR,400,183.3,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+200,primary,2026-11-23T10:12:34.334+00:00,1795428754334,,,False,0,,NO_FIX,2026-11-23T15:42:34,2026-11-23T10:12:34.333959+00:00,1795428754334,30105,HTTP_ERROR,404,381.5,
+201,primary,2026-11-23T10:12:34.736+00:00,1795428754736,,,False,0,,NO_FIX,2026-11-23T15:42:34,2026-11-23T10:12:34.735850+00:00,1795428754735,30105,HTTP_ERROR,404,173.5,
+120,secondary,2026-11-23T10:12:34.743+00:00,1795428754743,,,False,0,,NO_FIX,2026-11-23T15:42:13,2026-11-23T10:12:13.364510+00:00,1795428733364,,HTTP_ERROR,400,191.5,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+202,primary,2026-11-23T10:12:34.936+00:00,1795428754936,,,False,0,,NO_FIX,2026-11-23T15:42:34,2026-11-23T10:12:34.936743+00:00,1795428754936,30105,HTTP_ERROR,404,328.6,
+121,secondary,2026-11-23T10:12:34.935+00:00,1795428754935,,,False,0,,NO_FIX,2026-11-23T15:42:13,2026-11-23T10:12:13.602648+00:00,1795428733602,,HTTP_ERROR,400,345.1,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+203,primary,2026-11-23T10:12:35.276+00:00,1795428755276,,,False,0,,NO_FIX,2026-11-23T15:42:35,2026-11-23T10:12:35.275896+00:00,1795428755276,30105,HTTP_ERROR,404,192.0,
+122,secondary,2026-11-23T10:12:35.280+00:00,1795428755280,,,False,0,,NO_FIX,2026-11-23T15:42:13,2026-11-23T10:12:13.802994+00:00,1795428733803,,HTTP_ERROR,400,201.2,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+204,primary,2026-11-23T10:12:35.478+00:00,1795428755478,,,False,0,,NO_FIX,2026-11-23T15:42:35,2026-11-23T10:12:35.478622+00:00,1795428755478,30105,HTTP_ERROR,404,361.3,
+123,secondary,2026-11-23T10:12:35.482+00:00,1795428755482,,,False,0,,NO_FIX,2026-11-23T15:42:14,2026-11-23T10:12:14.003687+00:00,1795428734003,,HTTP_ERROR,400,377.8,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+205,primary,2026-11-23T10:12:35.850+00:00,1795428755850,,,False,0,,NO_FIX,2026-11-23T15:42:35,2026-11-23T10:12:35.850465+00:00,1795428755850,30105,HTTP_ERROR,404,228.1,
+124,secondary,2026-11-23T10:12:35.860+00:00,1795428755860,,,False,0,,NO_FIX,2026-11-23T15:42:14,2026-11-23T10:12:14.204274+00:00,1795428734204,,HTTP_ERROR,400,223.1,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+206,primary,2026-11-23T10:12:36.089+00:00,1795428756089,,,False,0,,NO_FIX,2026-11-23T15:42:36,2026-11-23T10:12:36.089082+00:00,1795428756089,30105,HTTP_ERROR,404,194.2,
+207,primary,2026-11-23T10:12:36.294+00:00,1795428756294,,,False,0,,NO_FIX,2026-11-23T15:42:36,2026-11-23T10:12:36.293966+00:00,1795428756294,30105,HTTP_ERROR,404,313.7,
+208,primary,2026-11-23T10:12:36.618+00:00,1795428756618,,,False,0,,NO_FIX,2026-11-23T15:42:36,2026-11-23T10:12:36.618171+00:00,1795428756618,30105,HTTP_ERROR,404,148.7,
+125,secondary,2026-11-23T10:12:36.623+00:00,1795428756623,,,False,0,,NO_FIX,2026-11-23T15:42:14,2026-11-23T10:12:14.538991+00:00,1795428734539,,HTTP_ERROR,400,157.0,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+126,secondary,2026-11-23T10:12:36.781+00:00,1795428756781,,,False,0,,NO_FIX,2026-11-23T15:42:14,2026-11-23T10:12:14.739138+00:00,1795428734739,,HTTP_ERROR,400,384.8,"{""error"":""Valid GPS coordinates (latitude and longitude) are required.""}"
+209,primary,2026-11-23T10:12:36.818+00:00,1795428756818,,,False,0,,NO_FIX,2026-11-23T15:42:36,2026-11-23T10:12:36.818277+00:00,1795428756818,30105,HTTP_ERROR,404,396.3,
+210,primary,2026-11-23T10:12:37.225+00:00,1795428757225,,,False,0,,NO_FIX,2026-11-23T15:42:37,2026-11-23T10:12:37.225282+00:00,1795428757225,30105,HTTP_ERROR,404,164.6,
